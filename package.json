@@ -1,0 +1,23 @@
+{
+  "name": "one_hundread_destination",
+  "version": "1.0.0",
+  "description": "This project is made based in the design of Anell 100 destination",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/ts-plugin": "^1.10.4",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "astro": "^4.16.7"
+  }
+}
