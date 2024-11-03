@@ -1,17 +1,60 @@
 ---
-// Welcome to Astro! Everything between these triple-dash code fences
-// is your "component frontmatter". It never runs in the browser.
-console.log('This runs in your terminal, not the browser!');
+import Layout from "../layouts/Layout.astro";
+// import { Image } from "astro:assets";
+// import backgroundMap from '@images/temp-img.png';
 ---
-<!-- Below is your "component template." It's just HTML, but with
-    some magic sprinkled in to help you build great templates. -->
-<html>
+
+<Layout title="main page">
   <body>
-    <h1>Test</h1>
+    <div class="img--background">
+    <div class="main--block">
+        <h1 class="title-font">
+            <span class="hundred--style">100</span> 
+            <span class="title--text">
+                DREAM<br/>DESTINATIONS
+            </span>
+            
+        </h1>
+    </div>
+    </div>
   </body>
-</html>
+</Layout>
+
 <style>
-  h1 {
-    color: orange;
-  }
+    .img--background{
+        position: relative;
+        background-image: url("/images/temp-img.png");
+        background-size: 150%;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    .main--block{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(0, 0, 0, 0.5);
+    }
+    .title-font {
+        display: flex;
+        align-items: center;
+        font-size: 10rem;
+        color:white;
+    }
+    .hundred--style{
+        font-size: 2em;
+        line-height: 1;
+    }
+    
+    @media screen and (max-width:1200px){
+        .title-font{
+            font-size:8rem
+        }
+    }
+    @media screen and (max-width:900px){
+        .title-font{
+            font-size:4.5rem
+        }
+    }
 </style>

@@ -6,6 +6,12 @@
                 "name": "@astrojs/ts-plugin"
             }
         ],
-        "verbatimModuleSyntax": true
+        "verbatimModuleSyntax": true,
+        "baseUrl": ".",
+        "paths":{
+        "@styles/*":["src/styles/*"],
+        "@images/*":["src/public/images*"]
     }
+    },
+    
 }
