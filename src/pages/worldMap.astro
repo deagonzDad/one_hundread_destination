@@ -1,6 +1,42 @@
 ---
 import Layout from "src/layouts/Layout.astro";
+import Test from "../assets/svg/FullMap.svg";
+import BtnContinent from "src/components/BtnContinent.astro";
 ---
 <Layout title="World Map">
-    <p>Hola</p>
+    <body>
+        <div 
+            class="canvas--img"
+        >
+            <img src={Test.src} alt="world map" class="img--background"/>
+            <svg 
+                width="100" 
+                height="200" 
+                class="canvas--img--svg"
+                xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 2086.98 1000.64"
+            >
+                <BtnContinent x={500} y={500} text="Brazil"/>
+            </svg>
+        </div>
+    </body>
 </Layout>
+<style>
+    .canvas--img{
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+    }
+    .canvas--img--svg {
+        width: 100%;
+        height: 100%;
+        position:absolute;
+    }
+    .img--background{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+</style>

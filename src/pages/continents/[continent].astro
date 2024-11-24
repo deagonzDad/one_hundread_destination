@@ -1,0 +1,13 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "src/layouts/Layout.astro";
+export async function getStaticPaths() {
+    const continent = await getCollection("continent");
+}
+const { continent } = Astro.props
+const { data, slug } continent
+---
+<Layout title="">
+
+</Layout>

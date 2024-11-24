@@ -1,21 +1,71 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import { Image } from "astro:assets";
-// import backgroundMap from '@images/temp-img.png';
+import BtnComponent from "src/components/BtnComponent.astro";
+//TODO: Check it out why the old/forwards doesn't work when I go to some page
+// because this fail in default or custom animation and give a bad UI experience
+// const fadeAnimation = {
+//     old:{
+//         name:'hide--text',
+//         duration:'0.5s',
+//         easing:'ease-in',
+//         direction:'reverse',
+//         fillMode:"forwards"
+        
+//     },
+//     new:{
+//         name:"hide--text",
+//         duration:"0.5s",
+//         easing:"ease-in-out",
+//     }
+// }
+// const fadeAnimations = {
+//     forwards: fadeAnimation,
+//     backwards: fadeAnimation
+// }
+
+// const bgAnimations = {
+//     old:{
+//         name:"small--bg",
+//         duration:"0.5s",
+//         easing:"ease-in",
+//         direction:"reverse"
+//     },
+//     new:{
+//         name:"small--bg",
+//         duration:"0.5s",
+//         easing:"ease-in-out",
+//     }
+// }
+// const bgAnimate = {
+//     forwards:bgAnimations,
+//     backwards:bgAnimations
+// }
+
 ---
 
 <Layout title="main page">
   <body>
-    <div class="img--background">
-    <div class="main--block">
-        <h1 class="title-font">
-            <span class="hundred--style">100</span> 
-            <span class="title--text">
-                DREAM<br/>DESTINATIONS
-            </span>
-            
-        </h1>
-    </div>
+    <div 
+        class="img--background"
+        transition:name="bgTransition"
+        transition:animate="slide"
+    >
+        <div 
+        class="main--block"
+        transition:name="fadeTransition"
+        transition:animate="slide"
+        >
+            <h1 class="title--font">
+                <span class="hundred--style"
+                >100</span> 
+                <span class="title--text">
+                    DREAM<br/>DESTINATIONS
+                </span>
+            </h1>
+            <div class="btn--redirection">
+                <BtnComponent href="/worldMap/" text="Start Exploring"/>
+            </div>
+        </div>
     </div>
   </body>
 </Layout>
@@ -23,8 +73,8 @@ import Layout from "../layouts/Layout.astro";
 <style>
     .img--background{
         position: relative;
-        background-image: url("/images/temp-img.png");
-        background-size: 150%;
+        background-image: url("/src/assets/svg/FullMap.svg");
+        background-size: 185%;
         background-position: center;
         background-repeat: no-repeat;
         overflow: hidden;
@@ -35,26 +85,36 @@ import Layout from "../layouts/Layout.astro";
         align-items: center;
         height: 100vh;
         background-color: rgb(0, 0, 0, 0.5);
+        flex-direction: column;
     }
-    .title-font {
+    .title--font {
+        display: flex; 
+        align-items: center; 
+        font-size:10rem;
+        color:white;
+        font-stretch: expanded;
+        letter-spacing:normal;
+        line-height:10rem;
+    }
+    .hundred--style {
+        font-size: 2.5em;
+        padding-top: 0.1em;
+        padding-right: 0.1em;
         display: flex;
         align-items: center;
-        font-size: 10rem;
-        color:white;
-    }
-    .hundred--style{
-        font-size: 2em;
-        line-height: 1;
+        justify-items: center;
     }
     
-    @media screen and (max-width:1200px){
-        .title-font{
-            font-size:8rem
+    @media screen and (max-width:800px){
+        .title--font{
+            font-size:10rem
         }
     }
-    @media screen and (max-width:900px){
-        .title-font{
-            font-size:4.5rem
+    @media screen and (max-width:500px){
+        .title--font{
+            font-size:3rem;
+            line-height:3rem;
         }
     }
 </style>
+
