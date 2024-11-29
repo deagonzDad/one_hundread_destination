@@ -1,9 +1,10 @@
 ---
-import Layout from "src/layouts/Layout.astro";
 import Test from "../assets/svg/FullMap.svg";
 import BtnContinent from "src/components/BtnContinent.astro";
+import { WIDTH_BTN_CTN, POSITION_NAME_MAP } from "@constants/worldMapConstants";
+import MainLayout from "src/layouts/MainLayout.astro";
 ---
-<Layout title="World Map">
+<MainLayout title="World Map">
     <body>
         <div 
             class="canvas--img"
@@ -17,11 +18,13 @@ import BtnContinent from "src/components/BtnContinent.astro";
                 xmlns:xlink="http://www.w3.org/1999/xlink" 
                 viewBox="0 0 2086.98 1000.64"
             >
-                <BtnContinent x={500} y={500} text="Brazil"/>
+                {Object.entries(POSITION_NAME_MAP).map(([key, {coordinate, abbr}])=>{
+                    return <BtnContinent text={key} x={coordinate.x} y={coordinate.y} href={`/continents/${abbr}/`}/>
+                })}
             </svg>
         </div>
     </body>
-</Layout>
+</MainLayout>
 <style>
     .canvas--img{
         display: flex;
@@ -40,3 +43,20 @@ import BtnContinent from "src/components/BtnContinent.astro";
         height: 100%;
     }
 </style>
+
+<script type="module" define:vars={{WIDTH_BTN_CTN}}>
+    const elements = document.querySelectorAll(".btnContinent")
+    elements.forEach(element => {
+        const textElement = element.getElementsByTagName("text")?.[0]
+        const rectElement = element.getElementsByTagName("rect")?.[0]
+        if(textElement && rectElement){
+            const bboxText = textElement.getBBox()
+            const lastPosition = Number(textElement.getAttribute("x"))
+            const finalWidth = bboxText.width + 100
+            const rawPosition = lastPosition - WIDTH_BTN_CTN/2
+            const finalPosition = rawPosition + (finalWidth/2)
+            rectElement.setAttribute("width", `${finalWidth}`)
+            textElement.setAttribute("x", finalPosition)
+        }        
+    })
+</script>

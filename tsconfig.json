@@ -12,7 +12,8 @@
         "baseUrl": ".",
         "paths":{
         "@styles/*":["src/styles/*"],
-        "@images/*":["src/public/images*"]
+        "@images/*":["src/public/images*"],
+        "@constants/*":["src/constants/*"]
     }
     },
     

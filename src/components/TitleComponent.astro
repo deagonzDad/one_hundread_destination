@@ -1,0 +1,46 @@
+---
+interface Props {
+    fontSize:number
+}
+const {fontSize=10} = Astro.props
+const SmallFontSize = fontSize/3
+---
+
+<h1 class="title--font">
+    <span class="hundred--style"
+    >100</span> 
+    <span class="title--text">
+        DREAM<br/>DESTINATIONS
+    </span>
+</h1>
+<style define:vars={{fontSize, SmallFontSize}}>
+        .title--font {
+        display: flex; 
+        align-items: center; 
+        font-size:calc(var(--fontSize)*1rem);
+        color:white;
+        font-stretch: expanded;
+        letter-spacing:normal;
+        line-height:calc(var(--fontSize)*1rem)
+    }
+    .hundred--style {
+        font-size: 2.5em;
+        padding-top: 0.1em;
+        padding-right: 0.1em;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    @media screen and (max-width:800px){
+        .title--font{
+            font-size:calc(var(--fontSize)*1rem);
+        }
+    }
+    @media screen and (max-width:500px){
+        .title--font{
+            font-size:calc(var(--SmallFontSize)*1rem);
+            line-height:calc(var(--SmallFontSize)*1rem);
+        }
+    }
+</style>

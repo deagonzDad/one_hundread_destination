@@ -1,29 +1,49 @@
 ---
+import {WIDTH_BTN_CTN, HEIGHT_BTN_CTN} from "@constants/worldMapConstants"
 interface Props{
     x:number
     y:number
     text:string
+    href:string
 }
-const {x, y, text} = Astro.props;
+const {x, y, text, href} = Astro.props;
 ---
 
-<rect 
-    x={x} 
-    y={y} 
-    width="100" 
-    height="30" 
-    fill="transparent" 
-    cursor="pointer" 
-    rx="10" 
-    ry="10" 
-    stroke="white" 
-    stroke-width="2"
-/>
-<text 
-    x={x+50} 
-    y={y+15}
-    text-anchor="middle" 
-    fill="white"
->
-    {text}
-</text>
+<g>
+    <a href={href} class="btnContinent">
+        <rect
+            x={x} 
+            y={y} 
+            width={WIDTH_BTN_CTN} 
+            height={HEIGHT_BTN_CTN}
+            fill="transparent" 
+            rx="40" 
+            ry="40" 
+            stroke="white" 
+            stroke-width="2"
+        />
+        <text
+            x={x+(WIDTH_BTN_CTN/2)}
+            y={y+(HEIGHT_BTN_CTN/2)}
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill="white"
+            font-size="40"
+        >
+            {text}
+        </text>
+    </a>
+</g>
+
+<style>
+    .btnContinent:hover {
+        rect {
+            fill:#3695BE;
+            stroke:#3695BE;
+        }
+    }
+    .btnContinent:active {
+        fill:#215c76;
+        stroke:#215c76;
+    }
+</style>
