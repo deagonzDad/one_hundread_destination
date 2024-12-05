@@ -1,0 +1,66 @@
+---
+import { QUERYSTRING_COUNTRY_NAME,QUERYSTRING_PLACE_TO_VISIT, imageMapping } from "@constants/worldMapConstants"
+import MainLayout from "src/layouts/MainLayout.astro"
+const TITTLE = "100 DESTINATIONS"
+
+---
+<MainLayout 
+    
+    title={TITTLE} 
+    
+>
+<place-astro 
+    data-mapping={JSON.stringify(imageMapping)}
+    data-country-key={QUERYSTRING_COUNTRY_NAME}
+    data-visit-key={QUERYSTRING_PLACE_TO_VISIT}
+>
+    <img id="mainImg" src=""/>
+</place-astro>
+</MainLayout>
+
+<style>
+    #mainImg {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<script>
+    interface IPlace extends HTMLElement {
+        mapping:Dictionary<string, string>
+        countryKey:string
+        visitKey:string
+    }
+    class Place extends HTMLElement implements IPlace {
+        mapping: Dictionary<string, string>;
+        countryKey: string;
+        visitKey: string;
+        constructor(){
+            super()
+            this.mapping = JSON.parse(this.dataset.mapping||"{}");
+            this.countryKey = this.dataset.countryKey||""
+            this.visitKey = this.dataset.visitKey||""
+        }
+        connectedCallback(){
+            this.getParams()
+        }
+        getParams = () => {
+            const urlParams = new URLSearchParams(window.location.search)
+            const continent = urlParams.get(this.countryKey)
+            const place = urlParams.get(this.visitKey)
+            if(!place || !continent){
+                //temporary fallback to a 404 error
+                throw Error("Doesn't exist elemenets")
+            }
+            this.setImageAndGetJSON({continent})
+        }
+        setImageAndGetJSON = ({continent}:{continent:string})=>{
+            const imageSelectedCountry = this.mapping[continent]||""
+            const mainImg = document.getElementById("mainImg")
+            mainImg?.setAttribute("src", imageSelectedCountry)
+        }
+    }
+    customElements.define("place-astro", Place)
+
+</script>

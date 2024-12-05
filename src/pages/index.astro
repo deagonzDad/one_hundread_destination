@@ -2,6 +2,8 @@
 import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import BtnComponent from "src/components/BtnComponent.astro";
+import { getImage } from "astro:assets";
+import FullMap from 'src/assets/svg/FullMap.svg'
 //TODO: Check it out why the old/forwards doesn't work when I go to some page
 // because this fail in default or custom animation and give a bad UI experience
 // const fadeAnimation = {
@@ -41,13 +43,14 @@ import BtnComponent from "src/components/BtnComponent.astro";
 //     forwards:bgAnimations,
 //     backwards:bgAnimations
 // }
-
+const backgroundImg = await getImage({src:FullMap, format:'webp', quality:'low'})
 ---
 
 <Layout title="main page">
   <body>
     <div 
         class="img--background"
+        style=`background-image:url("${backgroundImg.src}");`
         transition:name="bgTransition"
         transition:animate="slide"
     >
@@ -58,7 +61,7 @@ import BtnComponent from "src/components/BtnComponent.astro";
         >
             <TitleComponent fontSize={10}/>
             <div class="btn--redirection">
-                <BtnComponent href="/worldMap/" text="Start Exploring"/>
+                <BtnComponent href="/continents/" text="Start Exploring"/>
             </div>
         </div>
     </div>
@@ -68,7 +71,7 @@ import BtnComponent from "src/components/BtnComponent.astro";
 <style>
     .img--background{
         position: relative;
-        background-image: url("/src/assets/svg/FullMap.svg");
+        /* background-image: url("/src/assets/svg/FullMap.svg"); */
         background-size: 185%;
         background-position: center;
         background-repeat: no-repeat;

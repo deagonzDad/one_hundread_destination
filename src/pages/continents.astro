@@ -1,0 +1,74 @@
+---
+import Test from "../assets/svg/FullMap.svg";
+import BtnContinent from "src/components/BtnContinent.astro";
+import { WIDTH_BTN_CTN, POSITION_NAME_MAP } from "@constants/worldMapConstants";
+import MainLayout from "src/layouts/MainLayout.astro";
+---
+<MainLayout title="World Map">
+        <continent-svg 
+            data-width-btn={WIDTH_BTN_CTN}
+            class="canvas--img"
+        >
+            <img src={Test.src} alt="world map" class="img--background"/>
+            <svg 
+                width="100" 
+                height="200" 
+                class="canvas--img--svg"
+                xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 2086.98 1000.64"
+            >
+                {Object.entries(POSITION_NAME_MAP).map(([key, {coordinate, abbr}])=>{
+                    return <BtnContinent text={key} x={coordinate.x} y={coordinate.y} href={`/continents/${abbr}/`}/>
+                })}
+            </svg>
+        </continent-svg>
+</MainLayout>
+<style>
+    .canvas--img{
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+    }
+    .canvas--img--svg {
+        width: 100%;
+        height: 100%;
+        position:absolute;
+    }
+    .img--background{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<script>
+    interface IContinentSVG extends HTMLElement {
+        WIDTH_BTN: string|undefined;
+}
+    class ContinentSVG extends HTMLElement implements IContinentSVG {
+        WIDTH_BTN:string|undefined
+        constructor(){
+            super()
+            this.WIDTH_BTN = this.dataset.widthBtn
+        }
+    }
+    customElements.define("continent-svg", ContinentSVG)
+    const continentTag = document.querySelector("continent-svg") as IContinentSVG;
+    const WIDTH_BTN_CTN = Number(continentTag.WIDTH_BTN)
+    const elements = document.querySelectorAll(".btnContinent")
+    elements.forEach(element => {
+        const textElement = element.getElementsByTagName("text")?.[0]
+        const rectElement = element.getElementsByTagName("rect")?.[0]
+        if(textElement && rectElement){
+            const bboxText = textElement.getBBox()
+            const lastPosition = Number(textElement.getAttribute("x"))
+            const finalWidth = bboxText.width + 100
+            const rawPosition = lastPosition - WIDTH_BTN_CTN/2
+            const finalPosition = rawPosition + (finalWidth/2)
+            rectElement.setAttribute("width", `${finalWidth}`)
+            textElement.setAttribute("x", String(finalPosition))
+        }        
+    })
+</script>

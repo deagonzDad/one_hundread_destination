@@ -1,9 +1,10 @@
 ---
-import { POSITION_NAME_MAP } from "@constants/worldMapConstants";
-import BtnSelectorCity from "src/components/BtnSelectorCity.astro";
+import { POSITION_NAME_MAP,QUERYSTRING_COUNTRY_NAME,QUERYSTRING_PLACE_TO_VISIT } from "@constants/worldMapConstants";
+// import BtnSelectorCity from "src/components/BtnSelectorCity.astro";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import MainLayout from "src/layouts/MainLayout.astro";
+import NorthAmerica from "src/assets/json/NorthAmerica.json"
 export async function getStaticPaths(){
     return Object.entries(POSITION_NAME_MAP).map(([key, {continentImg, abbr}],index, array)=>{
         const lastCity = array[index-1]?.[1].abbr;
@@ -18,12 +19,10 @@ const {continentImg, continentName, lastCity, nextCity} = Astro.props;
 const images = import.meta.glob<{default:ImageMetadata}>("/src/assets/images/continents/*.{jpeg,jpg,png,gif}")
 const imgPath = `/src/assets/images/continents/${continentImg}.png`
 if(!images[imgPath]) throw new Error(`${imgPath} does not exist :(`)
-const loremIpsum = [
-    {test:"hola", test1:"hola"},
-    {test:"hola", test1:"hola"},
-    {test:"hola", test1:"hola"},
-    {test:"hola", test1:"hola"},
-]
+// const continentData = import(`/src/assets/json/${continentImg}.json`)
+// console.log(continentData)
+console.log("awapo", images[imgPath]())
+console.log("NorthAmerica", NorthAmerica)
 ---
 <MainLayout title={continentName}>
     <article class="main--body">
@@ -39,25 +38,75 @@ const loremIpsum = [
                 <div class="card--ctn">
                     <div class="card--header">
                         {lastCity ? (<a href={`/continents/${lastCity}/`} class="btn--change">
-                            <span class="material-icons-outlined icon--style">arrow_back</span>
+                            <span class="material-icons md-dark icon--style">arrow_back</span>
                         </a>):<span></span>}
                         <p class="secondary--title header--elem">{continentName}</p>
                         {nextCity ? (<a href={`/continents/${nextCity}/`} class="btn--change">
-                            <span class="material-icons-outlined icon--style">arrow_forward</span>
+                            <span class="material-icons md-dark icon--style">arrow_forward</span>
                         </a>):<span></span>}
                     </div>
                     <div class="card--body">
-                        {loremIpsum.map((test)=>{
+                        <button
+                            is="button-city"
+                            data-country-key={QUERYSTRING_COUNTRY_NAME}
+                            data-place-key={QUERYSTRING_PLACE_TO_VISIT}
+                            data-continent-name={continentImg}
+                            data-place-name="Caroline"
+                        >
+                            Hi{NorthAmerica.Carolina.name}
+                        </button>
+                        <!-- <a href=`/continents/place/?${QUERYSTRING_COUNTRY_NAME}=${continentImg}&${QUERYSTRING_COUNTRY_NAME}=Carolina`>HACIA UNA PAGINA</a> -->
+                        <!-- {loremIpsum.map((test)=>{
                             console.log(test)
                             return <BtnSelectorCity />
-                        })}
+                        })} -->
                     </div>
                 </div>
             </div>
         </div>
     </article>
 </MainLayout>
+<script>
+    interface IButtonExtra extends HTMLButtonElement {
+        countryKey: string|undefined;
+        placeKey: string|undefined;
+        continentName: string|undefined;
+        placeName: string|undefined;
+}
+    class ButtonExtra extends HTMLButtonElement implements IButtonExtra {
+        countryKey: string | undefined;
+        placeKey: string | undefined;
+        continentName: string | undefined;
+        placeName: string | undefined;
+        constructor(){
+            super()
+            this.countryKey = this.dataset.countryKey
+            this.placeKey = this.dataset.placeKey
+            this.continentName = this.dataset.continentName
+            this.placeName = this.dataset.placeName
+            this.boundOnClick()
+        }
+        boundOnClick = () => {
+            this.addEventListener("click",()=>{
+                const timestamp = Date.now()
+                const redirectionData =`/continents/place/?${this.countryKey}=${this.continentName}&${this.placeKey}=${this.placeName}&t=${timestamp}`
+                window.location.href = redirectionData
+            })
+        }
+    };
+    customElements.define("button-city", ButtonExtra, {extends:"button"})
 
+    async function fetchItems() {
+    const response = await fetch('/assets/json/NorthAmerica.json');
+    const items = await response.json();
+
+    // Do something with the fetched items, e.g., update the DOM
+    console.log(items);
+}
+
+// Call the function to fetch the data
+    fetchItems();   
+</script>
 <style>
     .card--body {
         /* background-color: red; */
