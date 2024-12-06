@@ -46,7 +46,7 @@ import MainLayout from "src/layouts/MainLayout.astro";
 <script>
     interface IContinentSVG extends HTMLElement {
         WIDTH_BTN: string|undefined;
-}
+    }
     class ContinentSVG extends HTMLElement implements IContinentSVG {
         WIDTH_BTN:string|undefined
         constructor(){
@@ -57,6 +57,7 @@ import MainLayout from "src/layouts/MainLayout.astro";
     customElements.define("continent-svg", ContinentSVG)
     const continentTag = document.querySelector("continent-svg") as IContinentSVG;
     const WIDTH_BTN_CTN = Number(continentTag.WIDTH_BTN)
+    //refactorize in the future, we can add all the information inside a customElements
     const elements = document.querySelectorAll(".btnContinent")
     elements.forEach(element => {
         const textElement = element.getElementsByTagName("text")?.[0]

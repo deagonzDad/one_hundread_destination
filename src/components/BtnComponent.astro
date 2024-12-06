@@ -5,11 +5,32 @@ interface Props {
 }
 const {href, text} = Astro.props;
 ---
-    <a class="btn--button" href={href} ><span class="btn--text">{text}</span></a>
+    <a-elem class="btn--button" data-href={href} ><span class="btn--text">{text}</span></a-elem>
 
-
+<script>
+    interface IHTMLAnchorElement extends HTMLElement {
+        hrefRaw: string|undefined;
+    }
+    class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement {
+        hrefRaw: string | undefined;
+        constructor(){
+            super()
+            this.hrefRaw = this.dataset.href
+            this.addEventListener("click", ()=>{
+                this.goToAnchorTimestamp()
+            })
+        }
+        goToAnchorTimestamp=()=>{
+            const timestamp = Date.now()
+            const newRefUrl = `${this.hrefRaw}?t=${timestamp}`
+            window.location.href = newRefUrl
+        }
+    }
+    customElements.define("a-elem", HTMLAnchorElement)
+</script>
 <style>
     .btn--button{
+        cursor: pointer;
         display: flex;
         border-radius: 10rem;
         border-width: 0.1rem;

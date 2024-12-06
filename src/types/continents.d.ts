@@ -10,3 +10,21 @@ interface Continent {
     abbr: string,
     continentImg:string
 }
+interface PlaceInfo {
+    country: string;
+    interest: string;
+    tripTime: number;
+    stayTime: number;
+    weather: string;
+    farForMe: number;
+}
+
+interface Places {
+    [key: string]: PlaceInfo;
+}
+interface IHTMLPlaceElement extends HTMLElement {
+    countryKey: string|undefined;
+    placeKey: string|undefined;
+    continentName: string|undefined;
+    placeName: string|undefined;
+}
