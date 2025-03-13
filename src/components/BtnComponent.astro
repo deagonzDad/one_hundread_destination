@@ -5,12 +5,9 @@ interface Props {
 }
 const {href, text} = Astro.props;
 ---
-    <a-elem class="btn--button" data-href={href} ><span class="btn--text">{text}</span></a-elem>
+    <a class="btn--button" href={href} ><span class="btn--text">{text}</span></a>
 
 <script>
-    interface IHTMLAnchorElement extends HTMLElement {
-        hrefRaw: string|undefined;
-    }
     class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement {
         hrefRaw: string | undefined;
         constructor(){

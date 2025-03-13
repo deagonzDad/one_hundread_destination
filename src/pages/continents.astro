@@ -5,7 +5,7 @@ import { WIDTH_BTN_CTN, POSITION_NAME_MAP } from "@constants/worldMapConstants";
 import MainLayout from "src/layouts/MainLayout.astro";
 ---
 <MainLayout title="World Map">
-        <continent-svg 
+        <svg-container
             data-width-btn={WIDTH_BTN_CTN}
             class="canvas--img"
         >
@@ -19,11 +19,49 @@ import MainLayout from "src/layouts/MainLayout.astro";
                 viewBox="0 0 2086.98 1000.64"
             >
                 {Object.entries(POSITION_NAME_MAP).map(([key, {coordinate, abbr}])=>{
-                    return <BtnContinent text={key} x={coordinate.x} y={coordinate.y} href={`/continents/${abbr}/`}/>
+                    return <BtnContinent 
+                        text={key} 
+                        x={coordinate.x} 
+                        y={coordinate.y} 
+                        href={`/continents/${abbr}/`}
+                        widthBtn={WIDTH_BTN_CTN}
+                    />
                 })}
             </svg>
-        </continent-svg>
+        </svg-container>
 </MainLayout>
+
+<script>
+    class ContinentSVG extends HTMLElement {
+        WIDTH_BTN: Number;
+        constructor(){
+            super()
+            this.WIDTH_BTN = Number(this.dataset.widthBtn)
+        }
+
+        connectedCallback(){
+            this.updateChildDimensions()
+        }
+
+        updateChildDimensions = () => {
+            const elements = document.querySelectorAll(".btnContinent")
+            elements.forEach(element => {
+            const textElement = element.getElementsByTagName("text")?.[0]
+            const rectElement = element.getElementsByTagName("rect")?.[0]
+            if(textElement && rectElement){
+                    const bboxText = textElement.getBBox()
+                    const lastPosition = Number(textElement.getAttribute("x"))
+                    const finalWidth = bboxText.width + 100
+                    const rawPosition = lastPosition - Number(this.WIDTH_BTN)/2
+                    const finalPosition = rawPosition + (finalWidth/2)
+                    rectElement.setAttribute("width", `${finalWidth}`)
+                    textElement.setAttribute("x", String(finalPosition))
+                }        
+            })
+        }
+    }
+    customElements.define("svg-container", ContinentSVG)
+</script>
 <style>
     .canvas--img{
         display: flex;
@@ -42,34 +80,3 @@ import MainLayout from "src/layouts/MainLayout.astro";
         height: 100%;
     }
 </style>
-
-<script>
-    interface IContinentSVG extends HTMLElement {
-        WIDTH_BTN: string|undefined;
-    }
-    class ContinentSVG extends HTMLElement implements IContinentSVG {
-        WIDTH_BTN:string|undefined
-        constructor(){
-            super()
-            this.WIDTH_BTN = this.dataset.widthBtn
-        }
-    }
-    customElements.define("continent-svg", ContinentSVG)
-    const continentTag = document.querySelector("continent-svg") as IContinentSVG;
-    const WIDTH_BTN_CTN = Number(continentTag.WIDTH_BTN)
-    //refactorize in the future, we can add all the information inside a customElements
-    const elements = document.querySelectorAll(".btnContinent")
-    elements.forEach(element => {
-        const textElement = element.getElementsByTagName("text")?.[0]
-        const rectElement = element.getElementsByTagName("rect")?.[0]
-        if(textElement && rectElement){
-            const bboxText = textElement.getBBox()
-            const lastPosition = Number(textElement.getAttribute("x"))
-            const finalWidth = bboxText.width + 100
-            const rawPosition = lastPosition - WIDTH_BTN_CTN/2
-            const finalPosition = rawPosition + (finalWidth/2)
-            rectElement.setAttribute("width", `${finalWidth}`)
-            textElement.setAttribute("x", String(finalPosition))
-        }        
-    })
-</script>

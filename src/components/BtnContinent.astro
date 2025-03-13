@@ -5,12 +5,12 @@ interface Props{
     y:number
     text:string
     href:string
+    widthBtn:number
 }
-const {x, y, text, href} = Astro.props;
+const {x, y, text, href, widthBtn} = Astro.props;
 ---
-
 <g>
-    <a href={href} class="btnContinent">
+    <a href={href} class="btnContinent" data-widrth-btn={widthBtn}>
         <rect
             x={x} 
             y={y} 

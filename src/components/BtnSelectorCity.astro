@@ -15,8 +15,9 @@ const {name, info, placeKey, continentKey, countryName} = Astro.props
     data-place-key={placeKey}
     data-continent-name={countryName}
     data-place-name={name}
+    href=`/continents/place/?${continentKey}=${countryName}&${placeKey}=${name}`
 >
-    <p>{name}, {info.country} Hola</p>
+    <p>{name}, {info.country}</p>
 </selector-city>
 <script>
     class HTMLPlaceElement extends HTMLElement implements IHTMLPlaceElement {
@@ -43,8 +44,8 @@ const {name, info, placeKey, continentKey, countryName} = Astro.props
     customElements.define("selector-city", HTMLPlaceElement)
 </script>
 <style>
-    selector-city {
-        height: 6rem;
+    selector-city, .btn--country {
+        height: 7rem;
         display: flex;
         cursor:pointer;
         padding: 1rem 2rem;

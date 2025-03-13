@@ -28,3 +28,17 @@ interface IHTMLPlaceElement extends HTMLElement {
     continentName: string|undefined;
     placeName: string|undefined;
 }
+
+interface IContinentSVG extends HTMLElement {
+    WIDTH_BTN: Number;
+}
+interface IHTMLAnchorElement extends HTMLElement {
+    hrefRaw: string|undefined;
+}
+interface IPlace extends HTMLElement {
+    mapping:Dictionary<string, string>
+    countryKey:string
+    visitKey:string
+    countryName: string;
+    placeName: string;
+}

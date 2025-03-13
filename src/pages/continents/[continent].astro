@@ -21,7 +21,7 @@ if(!images[imgPath]) throw new Error(`${imgPath} does not exist :(`)
 const countryFile = `../../../src/assets/json/${continentImg}.json`
 const country:Places = await import(/* @vite-ignore */countryFile, {with:{type:"json"}})
 if(!country.default) throw new Error(`${continentImg} the file doesn't exist :(`)
-console.log("data", country.defualt)
+
 ---
 <MainLayout title={continentName}>
     <article class="main--body">
@@ -45,6 +45,7 @@ console.log("data", country.defualt)
                         </a>):<span></span>}
                     </div>
                     <div class="card--body">
+                        <div class="card--body--ctn">
                             {
                                 Object.entries(country.default).map(([key, item])=>{
                                     return <BtnSelectorCity
@@ -56,7 +57,8 @@ console.log("data", country.defualt)
                                     />
                                 })
                             }
-                    </div>
+                        </div>
+                    </>
                 </div>
             </div>
         </div>
@@ -74,12 +76,24 @@ console.log("data", country.defualt)
 </script>
 <style>
     .card--body {
+        display: flex;
         height: 100%;
         margin-bottom: 10%;
         padding: 30px;
         border-radius: 30px;
         box-shadow: 0 0 2rem 1rem rgba(255, 255, 255, 0.1) inset;
+        overflow-y: hidden;
+    }
+    .card--body--ctn {
+        /* display: flex;
+        flex-direction: column; */
+        height: 100%;
+        width: 100%;
+        padding: 0 1rem;
         overflow-y: scroll;
+        scrollbar-color: white rgb(0, 0, 0);
+        scrollbar-gutter:stable both-edges;
+        scrollbar-width: auto;
     }
     .main--body {
         display: flex;
@@ -139,7 +153,7 @@ console.log("data", country.defualt)
         .secondary--title {
             font-size: 2rem;
         }
-        .card--body {
+        .card--body--ctn {
             overflow-y: visible;
         }
         .card--ctn {
