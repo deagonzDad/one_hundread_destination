@@ -1,57 +1,60 @@
 ---
+import type { PlaceInfo } from "../types/continents";
+
 interface Props {
-    name:string
-    info:PlaceInfo
-    countryName:string
-    // placeVisit:string
-    continentKey:string
-    placeKey:string
+  name: string;
+  info: PlaceInfo;
+  countryName: string;
+  // placeVisit:string
+  continentKey: string;
+  placeKey: string;
 }
-const {name, info, placeKey, continentKey, countryName} = Astro.props
+const { name, info, placeKey, continentKey, countryName } = Astro.props;
 ---
 
 <selector-city
-    data-country-key={continentKey}
-    data-place-key={placeKey}
-    data-continent-name={countryName}
-    data-place-name={name}
-    href=`/continents/place/?${continentKey}=${countryName}&${placeKey}=${name}`
+  data-country-key={continentKey}
+  data-place-key={placeKey}
+  data-continent-name={countryName}
+  data-place-name={name}
+  href=`/continents/place/?${continentKey}=${countryName}&${placeKey}=${name}`
 >
-    <p>{name}, {info.country}</p>
+  <p>{name}, {info.country}</p>
 </selector-city>
 <script>
-    class HTMLPlaceElement extends HTMLElement implements IHTMLPlaceElement {
-        countryKey: string | undefined;
-        placeKey: string | undefined;
-        continentName: string | undefined;
-        placeName: string | undefined;
-        constructor(){
-            super()
-            this.countryKey = this.dataset.countryKey
-            this.placeKey = this.dataset.placeKey
-            this.continentName = this.dataset.continentName
-            this.placeName = this.dataset.placeName
-            this.boundOnClick()
-        }
-        boundOnClick = () => {
-            this.addEventListener("click",()=>{
-                const timestamp = Date.now()
-                const redirectionData =`/continents/place/?${this.countryKey}=${this.continentName}&${this.placeKey}=${this.placeName}&t=${timestamp}`
-                window.location.href = redirectionData
-            })
-        }
+  class HTMLPlaceElement extends HTMLElement implements IHTMLPlaceElement {
+    countryKey: string | undefined;
+    placeKey: string | undefined;
+    continentName: string | undefined;
+    placeName: string | undefined;
+    constructor() {
+      super();
+      this.countryKey = this.dataset.countryKey;
+      this.placeKey = this.dataset.placeKey;
+      this.continentName = this.dataset.continentName;
+      this.placeName = this.dataset.placeName;
+      this.boundOnClick();
+    }
+    boundOnClick = () => {
+      this.addEventListener("click", () => {
+        const timestamp = Date.now();
+        const redirectionData = `/continents/place/?${this.countryKey}=${this.continentName}&${this.placeKey}=${this.placeName}&t=${timestamp}`;
+        window.location.href = redirectionData;
+      });
     };
-    customElements.define("selector-city", HTMLPlaceElement)
+  }
+  customElements.define("selector-city", HTMLPlaceElement);
 </script>
 <style>
-    selector-city, .btn--country {
-        height: 7rem;
-        display: flex;
-        cursor:pointer;
-        padding: 1rem 2rem;
-        /* border-style: double; */
-        border-radius: 1rem;
-        box-shadow: 0 0 1rem 0.5rem rgba(255, 255, 255, 0.1) inset;
-        margin:1rem 0;
-    }
+  selector-city,
+  .btn--country {
+    height: 7rem;
+    display: flex;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    /* border-style: double; */
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 0.5rem rgba(255, 255, 255, 0.1) inset;
+    margin: 1rem 0;
+  }
 </style>

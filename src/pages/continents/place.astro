@@ -1,152 +1,154 @@
 ---
-import { QUERYSTRING_COUNTRY_NAME,QUERYSTRING_PLACE_TO_VISIT, imageMapping } from "@constants/worldMapConstants"
-import MainLayout from "src/layouts/MainLayout.astro"
-const TITTLE = "100 DESTINATIONS"
+import {
+  QUERYSTRING_COUNTRY_NAME,
+  QUERYSTRING_PLACE_TO_VISIT,
+  imageMapping,
+} from "@constants/worldMapConstants";
+import MainLayout from "src/layouts/MainLayout.astro";
+const TITTLE = "100 DESTINATIONS";
 ---
-<MainLayout 
-    title={TITTLE} 
->
-    <place-astro 
-        data-mapping={JSON.stringify(imageMapping)}
-        data-country-key={QUERYSTRING_COUNTRY_NAME}
-        data-visit-key={QUERYSTRING_PLACE_TO_VISIT}
-        class="main--body"
-    >
-        <div class="element--ctn element--ctn--left">
-            <div class="main--card">
-                <div class="place--image"></div>
-                <div class="data--ctn"></div>
-            </div>
-        </div>
-        <div class="element--ctn">
-            <div class="card--main--ctn">
-                <h1 class="tittle--text"></h1>
-                <div class="card--ctn"></div>
-            </div>
-            <div class="img--ctn">
-                <img id="mainImg" src=""/>
-            </div>
-        </div>
-    </place-astro>
+
+<MainLayout title={TITTLE}>
+  <place-astro
+    data-mapping={JSON.stringify(imageMapping)}
+    data-country-key={QUERYSTRING_COUNTRY_NAME}
+    data-visit-key={QUERYSTRING_PLACE_TO_VISIT}
+    class="main--body"
+  >
+    <div class="element--ctn element--ctn--left">
+      <div class="main--card">
+        <div class="place--image"></div>
+        <div class="data--ctn"></div>
+      </div>
+    </div>
+    <div class="element--ctn">
+      <div class="card--main--ctn">
+        <h1 class="tittle--text"></h1>
+        <div class="card--ctn"></div>
+      </div>
+      <div class="img--ctn">
+        <img id="mainImg" src="" />
+      </div>
+    </div>
+  </place-astro>
 </MainLayout>
 
 <style>
-    .place--image {
-        display: flex;
-        width: 100%;
-        height: 50%;
-        background-color: black;
-        border-radius: 60px;
-        
-    }
-    .data--ctn {
-        
-        display: flex;
-        height: 50%;
-        width: 100%;
-    }
-    .main--card {
-        display: flex;
-        background-color: white;
-        height: 50vh;
-        width: 80%;
-        border-radius: 60px;
-        flex-direction: column;
-        box-sizing: border-box;
-        padding: 3rem;
-    }
-    .main--body {
-        display: flex;
-        height: 100vh;
-        flex-direction: row;
-    }
-    .element--ctn{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
-    .element--ctn--left {
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
-    .place--image, .data--ctn {
-        display: flex;
-    }
-    .card--main--ctn {
-        display: flex;
-        background-color: beige;
-        height: 40%;
-    }
-    .img--ctn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60%;
-    }
-    #mainImg {
-        background-color: none;
-        max-width: 100%;
-        height: auto;
-    }
+  .place--image {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+    border-radius: 60px;
+  }
+  .data--ctn {
+    display: flex;
+    height: 50%;
+    width: 100%;
+  }
+  .main--card {
+    display: flex;
+    background-color: white;
+    height: 50vh;
+    width: 80%;
+    border-radius: 60px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 3rem;
+  }
+  .main--body {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+  }
+  .element--ctn {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  .element--ctn--left {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .place--image,
+  .data--ctn {
+    display: flex;
+  }
+  .card--main--ctn {
+    display: flex;
+    background-color: beige;
+    height: 40%;
+  }
+  .img--ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+  }
+  #mainImg {
+    background-color: none;
+    max-width: 100%;
+    height: auto;
+  }
 </style>
 
 <script>
-    var mainBody = {}
-    Object.defineProperty(window, "mainBody",{
-        set: function(newValue) {
-            console.log("value", newValue)
-        }
-    });
-    mainBody = {hola:2}
-    class Place extends HTMLElement implements IPlace {
-        mapping: Dictionary<string, string>;
-        countryKey: string;
-        visitKey: string;
-        countryName: string="";
-        placeName: string="";
-        constructor () {
-            super()
-            this.mapping = JSON.parse(this.dataset.mapping||"{}");
-            this.countryKey = this.dataset.countryKey||""
-            this.visitKey = this.dataset.visitKey||""
-        }
-
-        connectedCallback(){
-            this.getParams()
-            this.getCountryList()
-        }
-
-        getParams = () => {
-            const urlParams = new URLSearchParams(window.location.search)
-            const continent = urlParams.get(this.countryKey)
-            const place = urlParams.get(this.visitKey)
-            if(!place || !continent){
-                throw Error("Doesn't exist elemenets")
-            }
-            this.countryName = continent;
-            this.placeName = place
-            this.setImageAndGetJSON({continent})
-        }
-
-        setImageAndGetJSON = ({continent}:{continent:string})=>{
-            const imageSelectedCountry = this.mapping[continent]||""
-            const mainImg = document.getElementById("mainImg")
-            mainImg?.setAttribute("src", imageSelectedCountry)
-        }
-        
-        getCountryList = async() => {
-            console.log(this.countryName)
-            const response = await fetch(`/continents/${this.countryName}.json/`, {
-                method:"GET",
-                headers:{
-                    "Content-Type": "application/json",
-                }
-            })
-            const responseBody = await response.json()
-            const placeInfo = responseBody?.[this.placeName]
-            mainBody = placeInfo
-        }
+  var mainBody = {};
+  Object.defineProperty(window, "mainBody", {
+    set: function (newValue) {
+      console.log("value", newValue);
+    },
+  });
+  mainBody = { hola: 2 };
+  class Place extends HTMLElement implements IPlace {
+    mapping: Dictionary<string, string>;
+    countryKey: string;
+    visitKey: string;
+    countryName: string = "";
+    placeName: string = "";
+    constructor() {
+      super();
+      this.mapping = JSON.parse(this.dataset.mapping || "{}");
+      this.countryKey = this.dataset.countryKey || "";
+      this.visitKey = this.dataset.visitKey || "";
     }
-    customElements.define("place-astro", Place)
+
+    connectedCallback() {
+      this.getParams();
+      this.getCountryList();
+    }
+
+    getParams = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const continent = urlParams.get(this.countryKey);
+      const place = urlParams.get(this.visitKey);
+      if (!place || !continent) {
+        throw Error("Doesn't exist elemenets");
+      }
+      this.countryName = continent;
+      this.placeName = place;
+      this.setImageAndGetJSON({ continent });
+    };
+
+    setImageAndGetJSON = ({ continent }: { continent: string }) => {
+      const imageSelectedCountry = this.mapping[continent] || "";
+      const mainImg = document.getElementById("mainImg");
+      mainImg?.setAttribute("src", imageSelectedCountry);
+    };
+
+    getCountryList = async () => {
+      console.log(this.countryName);
+      const response = await fetch(`/continents/${this.countryName}.json/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseBody = await response.json();
+      const placeInfo = responseBody?.[this.placeName];
+      mainBody = placeInfo;
+    };
+  }
+  customElements.define("place-astro", Place);
 </script>

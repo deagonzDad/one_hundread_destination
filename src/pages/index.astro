@@ -3,7 +3,7 @@ import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import BtnComponent from "src/components/BtnComponent.astro";
 import { getImage } from "astro:assets";
-import FullMap from 'src/assets/svg/FullMap.svg'
+import FullMap from "src/assets/svg/FullMap.svg";
 //TODO: Check it out why the old/forwards doesn't work when I go to some page
 // because this fail in default or custom animation and give a bad UI experience
 // const fadeAnimation = {
@@ -13,7 +13,7 @@ import FullMap from 'src/assets/svg/FullMap.svg'
 //         easing:'ease-in',
 //         direction:'reverse',
 //         fillMode:"forwards"
-        
+
 //     },
 //     new:{
 //         name:"hide--text",
@@ -43,47 +43,49 @@ import FullMap from 'src/assets/svg/FullMap.svg'
 //     forwards:bgAnimations,
 //     backwards:bgAnimations
 // }
-const backgroundImg = await getImage({src:FullMap, format:'webp', quality:'low'})
+const backgroundImg = await getImage({
+  src: FullMap,
+  format: "webp",
+  quality: "low",
+});
 ---
 
 <Layout title="main page">
   <body>
-    <div 
-        class="img--background"
-        style=`background-image:url("${backgroundImg.src}");`
-        transition:name="bgTransition"
-        transition:animate="slide"
+    <div
+      class="img--background"
+      style=`background-image:url("${backgroundImg.src}");`
+      transition:name="bgTransition"
+      transition:animate="slide"
     >
-        <div 
+      <div
         class="main--block"
         transition:name="fadeTransition"
         transition:animate="slide"
-        >
-            <TitleComponent fontSize={10}/>
-            <div class="btn--redirection">
-                <BtnComponent href="/continents/" text="Start Exploring"/>
-            </div>
+      >
+        <TitleComponent fontSize={10} />
+        <div class="btn--redirection">
+          <BtnComponent href="/continents/" text="Start Exploring" />
         </div>
+      </div>
     </div>
   </body>
 </Layout>
 
 <style>
-    .img--background{
-        position: relative;
-        background-size: 185%;
-        background-position: center;
-        background-repeat: no-repeat;
-        overflow: hidden;
-    }
-    .main--block{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: rgb(0, 0, 0, 0.5);
-        flex-direction: column;
-    }
-
+  .img--background {
+    position: relative;
+    background-size: 185%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  .main--block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.5);
+    flex-direction: column;
+  }
 </style>
-

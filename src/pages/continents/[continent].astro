@@ -1,164 +1,190 @@
 ---
-import { POSITION_NAME_MAP,QUERYSTRING_COUNTRY_NAME,QUERYSTRING_PLACE_TO_VISIT } from "@constants/worldMapConstants";
+import {
+  POSITION_NAME_MAP,
+  QUERYSTRING_COUNTRY_NAME,
+  QUERYSTRING_PLACE_TO_VISIT,
+} from "@constants/worldMapConstants";
 import BtnSelectorCity from "src/components/BtnSelectorCity.astro";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import MainLayout from "src/layouts/MainLayout.astro";
-export async function getStaticPaths(){
-    return Object.entries(POSITION_NAME_MAP).map(([key, {continentImg, abbr}],index, array)=>{
-        const lastCity = array[index-1]?.[1].abbr;
-        const nextCity = array[index+1]?.[1].abbr;
-        return {
-            params:{continent:abbr},
-            props: {continentImg, continentName: key, lastCity, nextCity}
-        }
-    })
+import type { Places } from "../types/continents";
+export async function getStaticPaths() {
+  return Object.entries(POSITION_NAME_MAP).map(
+    ([key, { continentImg, abbr }], index, array) => {
+      const lastCity = array[index - 1]?.[1].abbr;
+      const nextCity = array[index + 1]?.[1].abbr;
+      return {
+        params: { continent: abbr },
+        props: { continentImg, continentName: key, lastCity, nextCity },
+      };
+    },
+  );
 }
-const {continentImg, continentName, lastCity, nextCity} = Astro.props;
-const images = import.meta.glob<{default:ImageMetadata}>("/src/assets/images/continents/*.{jpeg,jpg,png,gif}")
-const imgPath = `/src/assets/images/continents/${continentImg}.png`
-if(!images[imgPath]) throw new Error(`${imgPath} does not exist :(`)
-const countryFile = `../../../src/assets/json/${continentImg}.json`
-const country:Places = await import(/* @vite-ignore */countryFile, {with:{type:"json"}})
-if(!country.default) throw new Error(`${continentImg} the file doesn't exist :(`)
-
+const { continentImg, continentName, lastCity, nextCity } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/continents/*.{jpeg,jpg,png,gif}",
+);
+const imgPath = `/src/assets/images/continents/${continentImg}.png`;
+if (!images[imgPath]) throw new Error(`${imgPath} does not exist :(`);
+const countryFile = `../../../src/assets/json/${continentImg}.json`;
+const country: Places = await import(/* @vite-ignore */ countryFile, {
+  with: { type: "json" },
+});
+if (!country.default)
+  throw new Error(`${continentImg} the file doesn't exist :(`);
 ---
+
 <MainLayout title={continentName}>
-    <article class="main--body">
-        <div class="secondary--block">
-            <Image
-                src={images[imgPath]()}
-                alt="continent"
-                class="main--img"
-            />
-        </div>
-        <div class="secondary--block">
-            <div class="header--bar">
-                <div class="card--ctn">
-                    <div class="card--header">
-                        {lastCity ? (<a href={`/continents/${lastCity}/`} class="btn--change">
-                            <span class="material-icons md-dark icon--style">arrow_back</span>
-                        </a>):<span></span>}
-                        <p class="secondary--title header--elem">{continentName}</p>
-                        {nextCity ? (<a href={`/continents/${nextCity}/`} class="btn--change">
-                            <span class="material-icons md-dark icon--style">arrow_forward</span>
-                        </a>):<span></span>}
-                    </div>
-                    <div class="card--body">
-                        <div class="card--body--ctn">
-                            {
-                                Object.entries(country.default).map(([key, item])=>{
-                                    return <BtnSelectorCity
-                                        continentKey={QUERYSTRING_COUNTRY_NAME}
-                                        placeKey={QUERYSTRING_PLACE_TO_VISIT}
-                                        countryName={continentImg}
-                                        name={key}
-                                        info={item}
-                                    />
-                                })
-                            }
-                        </div>
-                    </>
-                </div>
+  <article class="main--body">
+    <div class="secondary--block">
+      <Image src={images[imgPath]()} alt="continent" class="main--img" />
+    </div>
+    <div class="secondary--block">
+      <div class="header--bar">
+        <div class="card--ctn">
+          <div class="card--header">
+            {
+              lastCity ? (
+                <a href={`/continents/${lastCity}/`} class="btn--change">
+                  <span class="material-icons md-dark icon--style">
+                    arrow_back
+                  </span>
+                </a>
+              ) : (
+                <span />
+              )
+            }
+            <p class="secondary--title header--elem">{continentName}</p>
+            {
+              nextCity ? (
+                <a href={`/continents/${nextCity}/`} class="btn--change">
+                  <span class="material-icons md-dark icon--style">
+                    arrow_forward
+                  </span>
+                </a>
+              ) : (
+                <span />
+              )
+            }
+          </div>
+          <div class="card--body">
+            <div class="card--body--ctn">
+              {
+                Object.entries(country.default).map(([key, item]) => {
+                  return (
+                    <BtnSelectorCity
+                      continentKey={QUERYSTRING_COUNTRY_NAME}
+                      placeKey={QUERYSTRING_PLACE_TO_VISIT}
+                      countryName={continentImg}
+                      name={key}
+                      info={item}
+                    />
+                  );
+                })
+              }
             </div>
+          </div>
         </div>
-    </article>
+      </div>
+    </div>
+  </article>
 </MainLayout>
 <script>
-//     async function fetchItems() {
-//     const response = await fetch('/assets/json/NorthAmerica.json');
-//     const items = await response.json();
-//     Do something with the fetched items, e.g., update the DOM
-//     console.log(items);
-// }
-// // Call the function to fetch the data
-//     fetchItems();
+  //     async function fetchItems() {
+  //     const response = await fetch('/assets/json/NorthAmerica.json');
+  //     const items = await response.json();
+  //     Do something with the fetched items, e.g., update the DOM
+  //     console.log(items);
+  // }
+  // // Call the function to fetch the data
+  //     fetchItems();
 </script>
 <style>
-    .card--body {
-        display: flex;
-        height: 100%;
-        margin-bottom: 10%;
-        padding: 30px;
-        border-radius: 30px;
-        box-shadow: 0 0 2rem 1rem rgba(255, 255, 255, 0.1) inset;
-        overflow-y: hidden;
-    }
-    .card--body--ctn {
-        /* display: flex;
+  .card--body {
+    display: flex;
+    height: 100%;
+    margin-bottom: 10%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 2rem 1rem rgba(255, 255, 255, 0.1) inset;
+    overflow-y: hidden;
+  }
+  .card--body--ctn {
+    /* display: flex;
         flex-direction: column; */
-        height: 100%;
-        width: 100%;
-        padding: 0 1rem;
-        overflow-y: scroll;
-        scrollbar-color: white rgb(0, 0, 0);
-        scrollbar-gutter:stable both-edges;
-        scrollbar-width: auto;
-    }
-    .main--body {
-        display: flex;
-        height: 100vh;
-        flex-direction: row;
-    }
-    .main--img {
-        max-width: 100%;
-        height: auto;
-    }
-    .secondary--block {
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-grow: 0;
-        width: 100%;
-    }
-    .secondary--title {
-        font-family: "Segoe UI Regular";
-        text-transform: capitalize;
-        font-size: 3rem;
-    }
-    .header--bar {
-        display: flex;
-        width: 80%;
-        height: 100%;
-        align-items: flex-end;
-    }
-    .card--header{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .card--ctn {
-        display: flex;
-        flex-direction: column;
-        align-content:flex-end;
-        height: 80%;
-        width: 100%;
-    }
-    .icon--style {
-        font-size: 5rem;
-    }
-    .btn--change:visited {
-        text-decoration: none;
-        color:white
-    }
-    /* .header--elem {
+    height: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    overflow-y: scroll;
+    scrollbar-color: white rgb(0, 0, 0);
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: auto;
+  }
+  .main--body {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+  }
+  .main--img {
+    max-width: 100%;
+    height: auto;
+  }
+  .secondary--block {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-grow: 0;
+    width: 100%;
+  }
+  .secondary--title {
+    font-family: "Segoe UI Regular";
+    text-transform: capitalize;
+    font-size: 3rem;
+  }
+  .header--bar {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    align-items: flex-end;
+  }
+  .card--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card--ctn {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    height: 80%;
+    width: 100%;
+  }
+  .icon--style {
+    font-size: 5rem;
+  }
+  .btn--change:visited {
+    text-decoration: none;
+    color: white;
+  }
+  /* .header--elem {
         padding: 0;
         margin: 0;
     } */
-    @media screen and (max-width:1000px){
-        .main--body{
-            flex-direction: column;
-        }
-        .secondary--title {
-            font-size: 2rem;
-        }
-        .card--body--ctn {
-            overflow-y: visible;
-        }
-        .card--ctn {
-            align-content: flex-start;
-            height: 100%;
-        }
+  @media screen and (max-width: 1000px) {
+    .main--body {
+      flex-direction: column;
     }
+    .secondary--title {
+      font-size: 2rem;
+    }
+    .card--body--ctn {
+      overflow-y: visible;
+    }
+    .card--ctn {
+      align-content: flex-start;
+      height: 100%;
+    }
+  }
 </style>

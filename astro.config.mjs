@@ -1,6 +1,6 @@
-import {defineConfig} from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-    trailingSlash:"always",
-    base:"",
+  trailingSlash: "always",
+  base: "",
 });

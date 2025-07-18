@@ -1,45 +1,46 @@
 ---
 interface Props {
-    href:string;
-    text:string;
+  href: string;
+  text: string;
 }
-const {href, text} = Astro.props;
+const { href, text } = Astro.props;
 ---
-    <a class="btn--button" href={href} ><span class="btn--text">{text}</span></a>
+
+<a class="btn--button" href={href}><span class="btn--text">{text}</span></a>
 
 <script>
-    class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement {
-        hrefRaw: string | undefined;
-        constructor(){
-            super()
-            this.hrefRaw = this.dataset.href
-            this.addEventListener("click", ()=>{
-                this.goToAnchorTimestamp()
-            })
-        }
-        goToAnchorTimestamp=()=>{
-            const timestamp = Date.now()
-            const newRefUrl = `${this.hrefRaw}?t=${timestamp}`
-            window.location.href = newRefUrl
-        }
+  class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement {
+    hrefRaw: string | undefined;
+    constructor() {
+      super();
+      this.hrefRaw = this.dataset.href;
+      this.addEventListener("click", () => {
+        this.goToAnchorTimestamp();
+      });
     }
-    customElements.define("a-elem", HTMLAnchorElement)
+    goToAnchorTimestamp = () => {
+      const timestamp = Date.now();
+      const newRefUrl = `${this.hrefRaw}?t=${timestamp}`;
+      window.location.href = newRefUrl;
+    };
+  }
+  customElements.define("a-elem", HTMLAnchorElement);
 </script>
 <style>
-    .btn--button{
-        cursor: pointer;
-        display: flex;
-        border-radius: 10rem;
-        border-width: 0.1rem;
-        border-color: white;
-        padding: 0.2rem 3rem;
-        text-decoration: none;
-        color: white;
-        border-style:solid;
-        align-items: center;
-        vertical-align:middle;
-    }
-    .btn--text {
-        font-size: 3rem;
-    }
+  .btn--button {
+    cursor: pointer;
+    display: flex;
+    border-radius: 10rem;
+    border-width: 0.1rem;
+    border-color: white;
+    padding: 0.2rem 3rem;
+    text-decoration: none;
+    color: white;
+    border-style: solid;
+    align-items: center;
+    vertical-align: middle;
+  }
+  .btn--text {
+    font-size: 3rem;
+  }
 </style>
