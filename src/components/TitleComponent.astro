@@ -1,45 +1,48 @@
 ---
+import type { TransitionAnimationValue } from "astro";
 interface Props {
-  fontSize: number;
+  fontSize?: number;
+  transitionAnimate: TransitionAnimationValue;
+  transitionName: string;
 }
-const { fontSize = 10 } = Astro.props;
-const SmallFontSize = fontSize / 3;
+const { fontSize = 3, transitionAnimate, transitionName } = Astro.props;
 ---
 
-<h1 class="title--font">
-  <span class="hundred--style">100</span>
-  <span class="title--text">
+<h1
+  class="title-font"
+  transition:animate={transitionAnimate}
+  transition:name={transitionName}
+>
+  <span class="hundred-style">100</span>
+  <span class="title-text">
     DREAM<br />DESTINATIONS
   </span>
 </h1>
-<style define:vars={{ fontSize, SmallFontSize }}>
-  .title--font {
+
+<style define:vars={{ fontSize }}>
+  .title-font {
+    --base-font-size: calc(var(--fontSize) * 1rem);
     display: flex;
     align-items: center;
-    font-size: calc(var(--fontSize) * 1rem);
+    font-size: var(--base-font-size);
     color: white;
     font-stretch: expanded;
-    letter-spacing: normal;
-    line-height: calc(var(--fontSize) * 1rem);
+    line-height: var(--base-font-size);
   }
-  .hundred--style {
+  .hundred-style {
     font-size: 2.5em;
     padding-top: 0.1em;
     padding-right: 0.1em;
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
   }
 
-  @media screen and (max-width: 800px) {
-    .title--font {
-      font-size: calc(var(--fontSize) * 1rem);
-    }
-  }
   @media screen and (max-width: 500px) {
-    .title--font {
-      font-size: calc(var(--SmallFontSize) * 1rem);
-      line-height: calc(var(--SmallFontSize) * 1rem);
+    .title-font {
+      --calc-font-resize: calc(var(--base-font-size) / 3);
+      font-size: var(--calc-font-resize);
+      line-height: var(--calc-font-resize);
     }
   }
 </style>
