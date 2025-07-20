@@ -30,7 +30,7 @@ interface IHTMLPlaceElement extends HTMLElement {
 }
 
 interface IContinentSVG extends HTMLElement {
-  WIDTH_BTN: Number;
+  WIDTH_BTN: number;
 }
 interface IHTMLAnchorElement extends HTMLElement {
   hrefRaw: string | undefined;
