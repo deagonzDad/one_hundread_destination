@@ -1,12 +1,20 @@
 ---
-import Test from "../assets/svg/FullMap.svg";
+import Test from "@assets/svg/FullMap.svg";
 import BtnContinent from "src/components/BtnContinent.astro";
 import { WIDTH_BTN_CTN, POSITION_NAME_MAP } from "@constants/worldMapConstants";
 import MainLayout from "src/layouts/MainLayout.astro";
+import { IndexLayoutAnimation } from "src/utils/transitions";
+// import { IndexLayoutAnimation } from "src/utils/transitions";
+// import "@styles/transitions/mainIndex.module.css";
 ---
 
 <MainLayout title="World Map">
-  <svg-container data-width-btn={WIDTH_BTN_CTN} class="canvas--img">
+  <svg-container
+    data-width-btn={WIDTH_BTN_CTN}
+    class="canvas--img"
+    transition:animate={IndexLayoutAnimation}
+    transition:name="IndexLayout"
+  >
     <img src={Test.src} alt="world map" class="img--background" />
     <svg
       width="100"

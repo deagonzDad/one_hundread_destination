@@ -2,90 +2,25 @@
 import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import BtnComponent from "src/components/BtnComponent.astro";
-import { getImage } from "astro:assets";
-import FullMap from "src/assets/svg/FullMap.svg";
-//TODO: Check it out why the old/forwards doesn't work when I go to some page
-// because this fail in default or custom animation and give a bad UI experience
-// const fadeAnimation = {
-//     old:{
-//         name:'hide--text',
-//         duration:'0.5s',
-//         easing:'ease-in',
-//         direction:'reverse',
-//         fillMode:"forwards"
-
-//     },
-//     new:{
-//         name:"hide--text",
-//         duration:"0.5s",
-//         easing:"ease-in-out",
-//     }
-// }
-// const fadeAnimations = {
-//     forwards: fadeAnimation,
-//     backwards: fadeAnimation
-// }
-
-// const bgAnimations = {
-//     old:{
-//         name:"small--bg",
-//         duration:"0.5s",
-//         easing:"ease-in",
-//         direction:"reverse"
-//     },
-//     new:{
-//         name:"small--bg",
-//         duration:"0.5s",
-//         easing:"ease-in-out",
-//     }
-// }
-// const bgAnimate = {
-//     forwards:bgAnimations,
-//     backwards:bgAnimations
-// }
-const backgroundImg = await getImage({
-  src: FullMap,
-  format: "webp",
-  quality: "low",
-});
+import FullMap from "src/assets/svg/FullMap.svg?raw";
+import indexStyles from "./index.module.css";
+import { IndexLayoutAnimation, TextAnimation } from "src/utils/transitions";
 ---
 
-<Layout title="main page">
-  <body>
+<Layout title="100 dream destinations by Anell">
+  <div class={indexStyles["img-background"]}>
     <div
-      class="img--background"
-      style=`background-image:url("${backgroundImg.src}");`
-      transition:name="bgTransition"
-      transition:animate="slide"
-    >
-      <div
-        class="main--block"
-        transition:name="fadeTransition"
-        transition:animate="slide"
-      >
-        <TitleComponent fontSize={10} />
-        <div class="btn--redirection">
-          <BtnComponent href="/continents/" text="Start Exploring" />
-        </div>
-      </div>
+      class={indexStyles["svg-container"]}
+      set:html={FullMap}
+      transition:animate={IndexLayoutAnimation}
+    />
+    <div class={indexStyles["main-block"]}>
+      <TitleComponent
+        fontSize={10}
+        transitionAnimate={TextAnimation}
+        transitionName="titleText"
+      />
+      <BtnComponent href="continents/" text="Start Exploring" />
     </div>
-  </body>
+  </div>
 </Layout>
-
-<style>
-  .img--background {
-    position: relative;
-    background-size: 185%;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
-  .main--block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: rgb(0, 0, 0, 0.5);
-    flex-direction: column;
-  }
-</style>
