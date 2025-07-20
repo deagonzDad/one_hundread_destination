@@ -28,6 +28,7 @@
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "material-icons": "^1.13.12",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.33.5",
@@ -37,8 +38,7 @@
   "dependencies": {
     "@fontsource/bebas-neue": "^5.1.0",
     "@fontsource/roboto-mono": "^5.1.0",
-    "astro": "5.0.0-beta.7",
-    "material-icons": "^1.13.12"
+    "astro": "5.12.0"
   },
   "lint-staged": {
     "**/*.{js,ts,astro}": [

@@ -1,6 +1,9 @@
 import { defineConfig } from "astro/config";
+// import { transitions } from "astro:transitions";
 
 export default defineConfig({
   trailingSlash: "always",
-  base: "",
+  base: "/anell",
+  output: "static",
+  // integrations: [transitions()],
 });
