@@ -1,0 +1,34 @@
+/* starting point this example explain what it does first*/
+@keyframes text-fade-out {
+  0% {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    transform: scale(1);
+    /* opacity: 1; */
+  }
+  /* 50% {
+    opacity: 0.5;
+  } */
+  100% {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: scale(0.2);
+    /* opacity: 0; */
+  }
+}
+
+@keyframes animation-zoom-out {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+    z-index: -1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+    z-index: -1;
+  }
+}
