@@ -26,13 +26,28 @@ const { title, description = "A journey to 100 dream destinations." } =
     <ClientRouter />
   </head>
   <body>
-    <slot />
+    <div class="page-wrapper">
+      <slot />
+    </div>
   </body>
 </html>
 <style is:global>
-@media (prefers-reduced-motion: no-preference) {
+  /* @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
-}
-<style>
+} */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+</style>

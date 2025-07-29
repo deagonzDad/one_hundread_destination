@@ -2,22 +2,28 @@
 import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
 import BtnComponent from "src/components/BtnComponent.astro";
-import FullMap from "src/assets/svg/FullMap.svg?raw";
+// import FullMap from "src/assets/svg/FullMap.svg?raw";
+import FullMapImg from "@assets/svg/FullMap.webp";
 import indexStyles from "./index.module.css";
-import { IndexLayoutAnimation, TextAnimation } from "src/utils/transitions";
+import {
+  IndexLayoutAnimation,
+  TextAnimationMix,
+  // TextAnimationUpper,
+} from "src/utils/transitions";
 ---
 
 <Layout title="100 dream destinations by Anell">
-  <div class={indexStyles["img-background"]}>
-    <div
-      class={indexStyles["svg-container"]}
-      set:html={FullMap}
+  <div class={indexStyles["img-container"]}>
+    <img
+      class={indexStyles["img-map"]}
+      src={FullMapImg.src}
+      alt="World map background"
       transition:animate={IndexLayoutAnimation}
     />
     <div class={indexStyles["main-block"]}>
       <TitleComponent
         fontSize={10}
-        transitionAnimate={TextAnimation}
+        transitionAnimate={TextAnimationMix}
         transitionName="titleText"
       />
       <BtnComponent href="continents/" text="Start Exploring" />

@@ -1,49 +1,33 @@
 ---
-import { WIDTH_BTN_CTN, HEIGHT_BTN_CTN } from "@constants/worldMapConstants";
-interface Props {
-  x: number;
-  y: number;
-  text: string;
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"a"> {
   href: string;
-  widthBtn: number;
+  text: string;
+  keyAbbr: string;
 }
-const { x, y, text, href, widthBtn } = Astro.props;
+const { href, text, keyAbbr } = Astro.props;
 ---
 
-<g>
-  <a href={href} class="btnContinent" data-widrth-btn={widthBtn}>
-    <rect
-      x={x}
-      y={y}
-      width={WIDTH_BTN_CTN}
-      height={HEIGHT_BTN_CTN}
-      fill="transparent"
-      rx="40"
-      ry="40"
-      stroke="white"
-      stroke-width="2"></rect>
-    <text
-      x={x + WIDTH_BTN_CTN / 2}
-      y={y + HEIGHT_BTN_CTN / 2}
-      text-anchor="middle"
-      dominant-baseline="middle"
-      fill="white"
-      font-size="40"
-    >
-      {text}
-    </text>
-  </a>
-</g>
+<btn-continent-web-component data-continent-abbr={keyAbbr}>
+  <a class="btn--button" href={href}><span class="btn--text">{text}</span></a>
+</btn-continent-web-component>
 
 <style>
-  .btnContinent:hover {
-    rect {
-      fill: #3695be;
-      stroke: #3695be;
-    }
+  .btn--button {
+    cursor: pointer;
+    display: flex;
+    border-radius: 10rem;
+    border-width: 0.1rem;
+    border-color: white;
+    padding: 0.2rem 3rem;
+    text-decoration: none;
+    color: white;
+    border-style: solid;
+    align-items: center;
+    vertical-align: middle;
   }
-  .btnContinent:active {
-    fill: #215c76;
-    stroke: #215c76;
+  .btn--text {
+    font-size: 3rem;
+    white-space: nowrap;
   }
 </style>

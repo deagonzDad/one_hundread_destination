@@ -32,3 +32,35 @@
     z-index: -1;
   }
 }
+
+@keyframes text-move-upper {
+  100% {
+    /* position: fixed; */
+    /* height: 100vh; */
+    background-color: red;
+
+    /* transform: translate */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: scale(1); */
+  }
+  0% {
+    /* position: fixed; */
+    background-color: red;
+    /* height: 100vh; */
+    /* top: 0%;
+    left: 0%; */
+    /* transform: scale(0.5); */
+  }
+}
+
+@keyframes text-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

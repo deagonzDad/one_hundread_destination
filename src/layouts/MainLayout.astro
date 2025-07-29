@@ -5,7 +5,8 @@ import "@fontsource/bebas-neue";
 // import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "./Layout.astro";
 import TitleComponent from "src/components/TitleComponent.astro";
-import { TextAnimation } from "src/utils/transitions";
+import { TextAnimationMix } from "src/utils/transitions";
+// import continentsStyle from "./mainLayout.module.css";
 interface Props {
   title: string;
   description?: string;
@@ -16,14 +17,18 @@ const { title, description = "A journey to 100 dream destinations." } =
 
 <Layout {title} {description}>
   <Fragment slot={"head"}></Fragment>
-  <body>
-    <div style="title--layer">
+  <header>
+    <div class="title--layer">
       <TitleComponent
         transitionName="titleText"
-        transitionAnimate={TextAnimation}
+        transitionAnimate={TextAnimationMix}
       />
-    </div><slot />
-  </body>
+    </div>
+    <nav><p>Hola</p></nav>
+  </header>
+  <main>
+    <slot />
+  </main>
 </Layout>
 <!-- <!doctype html>
 <html lang="en">
@@ -49,9 +54,33 @@ const { title, description = "A journey to 100 dream destinations." } =
 </html> -->
 
 <style>
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
+  }
+  main {
+    flex-grow: 1;
+    overflow: auto; /* Add this to handle content overflow within main */
+  }
+  nav {
+    width: auto;
+  }
   .title--layer {
-    position: absolute;
-    top: 3rem;
-    left: 3rem;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 1000px) {
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .title--layer {
+      width: 100%;
+    }
   }
 </style>

@@ -5,35 +5,35 @@ export const HEIGHT_BTN_CTN: number = 70;
 export const QUERYSTRING_COUNTRY_NAME: string = "country";
 export const QUERYSTRING_PLACE_TO_VISIT: string = "place";
 //TODO: correct the map the key need to be more easely to read and don't have space :C
-export const POSITION_NAME_MAP: Dictionary<string, Continent> = {
-  "North America": {
+export const POSITION_NAME_MAP = {
+  na: {
     coordinate: { x: 110, y: 470 },
-    abbr: "na",
+    name: "North America",
     continentImg: "NorthAmerica",
   },
-  Europe: {
+  eu: {
     coordinate: { x: 750, y: 450 },
-    abbr: "eu",
+    name: "Europe",
     continentImg: "Europe",
   },
-  "South America": {
+  sa: {
     coordinate: { x: 350, y: 800 },
-    abbr: "sa",
+    name: "South America",
     continentImg: "SouthAmerica",
   },
-  Africa: {
+  af: {
     coordinate: { x: 850, y: 800 },
-    abbr: "af",
+    name: "Africa",
     continentImg: "Africa",
   },
-  Asia: {
+  as: {
     coordinate: { x: 1750, y: 450 },
-    abbr: "as",
+    name: "Asia",
     continentImg: "Asia",
   },
-  Australia: {
+  au: {
     coordinate: { x: 1800, y: 750 },
-    abbr: "au",
+    name: "Australia",
     continentImg: "Australia",
   },
 };
