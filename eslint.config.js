@@ -22,7 +22,7 @@ export default defineConfig([
       globals: { ...globals.browser, ...globals.node },
       parser: tseslint.parser,
       parserOptions: {
-        project: true,
+        project: ["./tsconfig.eslint.json"],
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -31,11 +31,10 @@ export default defineConfig([
     files: ["**/*.astro"],
     languageOptions: {
       parser: eslintAstroParser,
+      globals: { ...globals.browser, ...globals.node },
       parserOptions: {
-        parser: tseslint.parser,
-        extraFileExtensions: [".astro"],
-        project: true,
-        globals: { ...globals.browser, ...globals.node },
+        // extraFileExtensions: [".astro"],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
