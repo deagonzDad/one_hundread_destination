@@ -109,7 +109,7 @@ const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
           SetDataAttributes(cityElement, {
             placeKey: key,
             countryKey: item.country.toLowerCase().replace(/\s/g, "-"),
-            continentName: mainData.continentName ?? "",
+            continentName: mainData.continentImg ?? "",
             placeName: item.country,
             weather: "test",
             firstLineMain: mainColor,
