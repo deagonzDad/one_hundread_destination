@@ -5,7 +5,21 @@
     "tripTime": 7,
     "stayTime": 5,
     "weather": "desert",
-    "farForMe": "3"
+    "farForMe": "3",
+    "placesToVisit": [
+      {
+        "placeName": "Pyramids of Giza",
+        "description": "Witness the last remaining wonder of the ancient world, an iconic symbol of Egypt's rich history."
+      },
+      {
+        "placeName": "Khan el-Khalili",
+        "description": "Immerse yourself in a vibrant, bustling bazaar, perfect for finding unique souvenirs and experiencing local culture."
+      },
+      {
+        "placeName": "The Egyptian Museum",
+        "description": "Explore a vast collection of ancient artifacts, including the treasures of Tutankhamun."
+      }
+    ]
   },
   "Cape Town": {
     "country": "South Africa",
@@ -13,7 +27,21 @@
     "tripTime": 10,
     "stayTime": 7,
     "weather": "mediterranean",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Table Mountain",
+        "description": "Take a cable car to the top for breathtaking panoramic views of the city and surrounding coastline."
+      },
+      {
+        "placeName": "Robben Island",
+        "description": "Visit the infamous prison where Nelson Mandela was held, a powerful reminder of South Africa's history."
+      },
+      {
+        "placeName": "Boulders Beach",
+        "description": "Get up close with a colony of African penguins in a beautiful, sheltered cove."
+      }
+    ]
   },
   "Marrakech": {
     "country": "Morocco",
@@ -21,7 +49,21 @@
     "tripTime": 5,
     "stayTime": 4,
     "weather": "arid",
-    "farForMe": "2"
+    "farForMe": "2",
+    "placesToVisit": [
+      {
+        "placeName": "Jardin Majorelle",
+        "description": "Escape to a stunning botanical garden with vibrant blue accents, formerly owned by Yves Saint Laurent."
+      },
+      {
+        "placeName": "Djemaa el-Fna",
+        "description": "Experience the heart of the medina, a bustling square filled with storytellers, musicians, and food stalls."
+      },
+      {
+        "placeName": "Bahia Palace",
+        "description": "Admire the intricate Islamic and Moroccan architecture in this stunning 19th-century palace."
+      }
+    ]
   },
   "Nairobi": {
     "country": "Kenya",
@@ -29,7 +71,21 @@
     "tripTime": 8,
     "stayTime": 6,
     "weather": "savanna",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Nairobi National Park",
+        "description": "Enjoy a unique safari experience with a backdrop of the city skyline, home to lions, rhinos, and giraffes."
+      },
+      {
+        "placeName": "David Sheldrick Wildlife Trust",
+        "description": "Visit an orphan elephant rescue and rehabilitation center and see the baby elephants during their feeding time."
+      },
+      {
+        "placeName": "Giraffe Centre",
+        "description": "Feed and interact with endangered Rothschild's giraffes from a raised platform."
+      }
+    ]
   },
   "Lagos": {
     "country": "Nigeria",
@@ -37,6 +93,20 @@
     "tripTime": 6,
     "stayTime": 4,
     "weather": "tropical",
-    "farForMe": "3"
+    "farForMe": "3",
+    "placesToVisit": [
+      {
+        "placeName": "Lekki Conservation Centre",
+        "description": "Walk on the longest canopy walkway in Africa and spot monkeys and other wildlife in this urban nature reserve."
+      },
+      {
+        "placeName": "Nike Art Gallery",
+        "description": "Discover a stunning collection of Nigerian art, from traditional to contemporary, in a massive four-story gallery."
+      },
+      {
+        "placeName": "Tarkwa Bay Beach",
+        "description": "Relax on a sheltered, artificial beach that is popular with swimmers and water sports enthusiasts."
+      }
+    ]
   }
 }

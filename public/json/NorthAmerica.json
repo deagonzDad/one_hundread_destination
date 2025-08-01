@@ -5,7 +5,21 @@
     "tripTime": 7,
     "stayTime": 5,
     "weather": "temperate",
-    "farForMe": "3"
+    "farForMe": "3",
+    "placesToVisit": [
+      {
+        "placeName": "Statue of Liberty",
+        "description": "A symbol of freedom and democracy, a gift from France to the United States."
+      },
+      {
+        "placeName": "Central Park",
+        "description": "A vast urban park with a variety of attractions, including a zoo, a carousel, and a castle."
+      },
+      {
+        "placeName": "Times Square",
+        "description": "A vibrant and bustling commercial intersection, famous for its bright lights and billboards."
+      }
+    ]
   },
   "Mexico City": {
     "country": "Mexico",
@@ -13,7 +27,21 @@
     "tripTime": 6,
     "stayTime": 4,
     "weather": "subtropical",
-    "farForMe": "2"
+    "farForMe": "2",
+    "placesToVisit": [
+      {
+        "placeName": "Zocalo",
+        "description": "The main square in central Mexico City, surrounded by historic buildings."
+      },
+      {
+        "placeName": "Teotihuacan",
+        "description": "An ancient Mesoamerican city with impressive pyramids and temples."
+      },
+      {
+        "placeName": "Frida Kahlo Museum",
+        "description": "The former home of the famous Mexican artist, now a museum dedicated to her life and work."
+      }
+    ]
   },
   "Toronto": {
     "country": "Canada",
@@ -21,7 +49,21 @@
     "tripTime": 5,
     "stayTime": 4,
     "weather": "continental",
-    "farForMe": "2"
+    "farForMe": "2",
+    "placesToVisit": [
+      {
+        "placeName": "CN Tower",
+        "description": "An iconic observation tower with panoramic views of the city and Lake Ontario."
+      },
+      {
+        "placeName": "Royal Ontario Museum",
+        "description": "Canada's largest museum, with a diverse collection of art, culture, and natural history."
+      },
+      {
+        "placeName": "Ripley's Aquarium of Canada",
+        "description": "A popular attraction with a variety of marine life, including sharks, turtles, and jellyfish."
+      }
+    ]
   },
   "Los Angeles": {
     "country": "USA",
@@ -29,7 +71,21 @@
     "tripTime": 7,
     "stayTime": 5,
     "weather": "mediterranean",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Hollywood Walk of Fame",
+        "description": "A famous sidewalk with more than 2,600 stars embedded in the pavement."
+      },
+      {
+        "placeName": "Santa Monica Pier",
+        "description": "A popular destination with an amusement park, an aquarium, and a variety of restaurants."
+      },
+      {
+        "placeName": "Griffith Observatory",
+        "description": "An observatory with stunning views of the city and the Hollywood Sign."
+      }
+    ]
   },
   "Vancouver": {
     "country": "Canada",
@@ -37,6 +93,20 @@
     "tripTime": 6,
     "stayTime": 4,
     "weather": "oceanic",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Stanley Park",
+        "description": "A large urban park with a variety of attractions, including a seawall, a totem pole display, and an aquarium."
+      },
+      {
+        "placeName": "Granville Island",
+        "description": "A vibrant arts and crafts community with a public market, theaters, and galleries."
+      },
+      {
+        "placeName": "Capilano Suspension Bridge",
+        "description": "A suspension bridge that crosses the Capilano River, with stunning views of the surrounding forest."
+      }
+    ]
   }
 }
