@@ -1,6 +1,11 @@
 import styles from "@styles/webComponents/selectorCityWComponent.css?raw";
 import { generateUrl } from "@utils/urlGenerator";
 import { getPositiveInteger } from "@utils/DataParsers";
+import {
+  QUERYSTRING_CONTINENT,
+  QUERYSTRING_COUNTRY_NAME,
+  QUERYSTRING_PLACE_TO_VISIT,
+} from "@constants/worldMapConstants";
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(styles);
 
@@ -103,10 +108,14 @@ class HTMLPlaceElement extends HTMLElement {
 
       secondLineDivCtn.innerHTML = dotLayout;
     }
+    console.log(continentName);
+
     this.addEventListener("click", () => {
       if (countryKey && placeKey && continentName && placeName) {
-        const timestamp = Date.now();
-        const redirectionUrl = `/continents/place/?${countryKey}=${continentName}&${placeKey}=${placeName}&t=${timestamp}`;
+        // const timestamp = Date.now();
+        const redirectionUrl = generateUrl(
+          `/continents/place/?${QUERYSTRING_COUNTRY_NAME}=${countryKey}&${QUERYSTRING_PLACE_TO_VISIT}=${placeKey}&${QUERYSTRING_CONTINENT}=${continentName}`,
+        );
 
         window.location.href = redirectionUrl;
       } else {

@@ -5,6 +5,7 @@ export const WIDTH_BTN_CTN: number = 100;
 export const HEIGHT_BTN_CTN: number = 70;
 export const QUERYSTRING_COUNTRY_NAME: string = "country";
 export const QUERYSTRING_PLACE_TO_VISIT: string = "place";
+export const QUERYSTRING_CONTINENT = "continent";
 //TODO: correct the map the key need to be more easely to read and don't have space :C
 export const POSITION_NAME_MAP = {
   na: {

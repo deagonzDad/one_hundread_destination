@@ -1,39 +1,44 @@
 ---
-import {
-  QUERYSTRING_COUNTRY_NAME,
-  QUERYSTRING_PLACE_TO_VISIT,
-  imageMapping,
-} from "@constants/worldMapConstants";
 import MainLayout from "src/layouts/MainLayout.astro";
 const TITTLE = "100 DESTINATIONS";
 ---
 
 <MainLayout title={TITTLE}>
-  <place-astro
-    data-mapping={JSON.stringify(imageMapping)}
-    data-country-key={QUERYSTRING_COUNTRY_NAME}
-    data-visit-key={QUERYSTRING_PLACE_TO_VISIT}
-    class="main--body"
-  >
-    <div class="element--ctn element--ctn--left">
+  <place-component class="main-body">
+    <div class="element-ctn ctn-left">
       <div class="main--card">
         <div class="place--image"></div>
         <div class="data--ctn"></div>
       </div>
     </div>
-    <div class="element--ctn">
+    <div class="element-ctn">
       <div class="card--main--ctn">
         <h1 class="tittle--text"></h1>
         <div class="card--ctn"></div>
       </div>
-      <div class="img--ctn">
-        <img src="" />
+      <div class="img-ctn">
+        <img src="" id="continentImg" alt="continent" />
       </div>
     </div>
-  </place-astro>
+  </place-component>
 </MainLayout>
 
 <style>
+  .main-body {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+  }
+  .element-ctn {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  .ctn-left {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
   .place--image {
     display: flex;
     width: 100%;
@@ -49,28 +54,14 @@ const TITTLE = "100 DESTINATIONS";
   .main--card {
     display: flex;
     background-color: white;
-    height: 50vh;
+    height: 50%;
     width: 80%;
     border-radius: 60px;
     flex-direction: column;
     box-sizing: border-box;
     padding: 3rem;
   }
-  .main--body {
-    display: flex;
-    height: 100vh;
-    flex-direction: row;
-  }
-  .element--ctn {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  .element--ctn--left {
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+
   .place--image,
   .data--ctn {
     display: flex;
@@ -80,20 +71,22 @@ const TITTLE = "100 DESTINATIONS";
     background-color: beige;
     height: 40%;
   }
-  .img--ctn {
+  .img-ctn {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60%;
   }
-  #mainImg {
+  #continentImg {
     background-color: none;
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    object-fit: cover;
   }
 </style>
 
 <script>
+  import "@utils/PlaceWComponent";
   // <div class="element--ctn">
   // class Place extends HTMLElement implements IPlace {
   //   constructor() {
