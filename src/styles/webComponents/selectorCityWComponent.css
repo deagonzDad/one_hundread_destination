@@ -7,7 +7,6 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin: 1rem 0;
-  /* background-color: blue; */
   gap: 1rem;
 }
 :host(:hover) {
@@ -29,7 +28,6 @@
 }
 .comp-img {
   width: 100%;
-  /* height: 100%; */
   object-fit: fill;
 }
 
@@ -74,14 +72,6 @@
   width: 100%;
   place-items: center;
 }
-
-/* #second-line:has(.dot:nth-child(3)):not(:has(.dot:nth-child(4)))
-  .dot:first-child {
-  grid-column: 1/-1;
-} */
-/* #third-line {
-  width: 100px;
-} */
 
 .small-ring {
   width: 45px;
