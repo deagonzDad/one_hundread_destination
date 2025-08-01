@@ -17,7 +17,7 @@ const ringType = {
 
 const patterns = {
   1: ["x", "x", "x", "x", "o", "x", "x", "x", "x"],
-  2: ["x", "x", "x", "o", "x", "o", "x", "x", "x"],
+  2: ["x", "x", "x", "o", "o", "x", "x", "x", "x"],
   3: ["x", "o", "x", "o", "x", "x", "x", "o", "x"],
   4: ["x", "o", "x", "o", "x", "o", "x", "o", "x"],
 };
@@ -108,7 +108,6 @@ class HTMLPlaceElement extends HTMLElement {
 
       secondLineDivCtn.innerHTML = dotLayout;
     }
-    console.log(continentName);
 
     this.addEventListener("click", () => {
       if (countryKey && placeKey && continentName && placeName) {
