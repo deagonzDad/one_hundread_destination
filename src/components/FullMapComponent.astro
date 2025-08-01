@@ -41,7 +41,7 @@ const { width: imgWidth, height: imgHeight } = FullMapImg;
             >
               <BtnContinent
                 text={name}
-                href={`/continents/${keyAbbr}`}
+                href={`/continents/${keyAbbr}/`}
                 keyAbbr={keyAbbr}
               />
             </foreignObject>
@@ -51,7 +51,10 @@ const { width: imgWidth, height: imgHeight } = FullMapImg;
     }
   </svg>
 </div>
-
+<script>
+  import "../utils/foreignObjectUpdater";
+  import "../utils/BtnContinentWebComponent";
+</script>
 <style>
   .map-container {
     position: relative;
@@ -69,10 +72,6 @@ const { width: imgWidth, height: imgHeight } = FullMapImg;
     position: absolute;
     top: 0;
     left: 0;
-    pointer-events: none;
     object-fit: contain;
-  }
-  .continent-svg-overlay :global(.btnContinent) {
-    pointer-events: all; /* Re-enable pointer events for the buttons */
   }
 </style>

@@ -22,7 +22,9 @@ const { name, info, placeKey, continentKey, countryName } = Astro.props;
   <p>{name}, {info.country}</p>
 </selector-city>
 <script>
-  class HTMLPlaceElement extends HTMLElement implements IHTMLPlaceElement {
+  // class HTMLPlaceElement extends HTMLElement implements IHTMLPlaceElement {
+
+  class HTMLPlaceElement extends HTMLElement {
     countryKey: string | undefined;
     placeKey: string | undefined;
     continentName: string | undefined;

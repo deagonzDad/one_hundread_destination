@@ -3,14 +3,19 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"a"> {
   href: string;
   text: string;
-  keyAbbr: string;
+  keyAbbr?: string;
 }
+import { generateUrl } from "../utils/urlGenerator";
 const { href, text, keyAbbr } = Astro.props;
+const generatedHref = generateUrl(href);
 ---
 
-<btn-continent-web-component data-continent-abbr={keyAbbr}>
-  <a class="btn--button" href={href}><span class="btn--text">{text}</span></a>
-</btn-continent-web-component>
+<a
+  class="btn--button"
+  href={generatedHref}
+  data-continent-abbr={keyAbbr}
+  is="btn-continent-extend"><span class="btn--text">{text}</span></a
+>
 
 <style>
   .btn--button {
@@ -24,7 +29,12 @@ const { href, text, keyAbbr } = Astro.props;
     color: white;
     border-style: solid;
     align-items: center;
+    justify-content: center;
     vertical-align: middle;
+  }
+  .btn--button:hover {
+    background-color: #add8e6; /* Light blue */
+    border-color: #0000cd; /* Dark blue */
   }
   .btn--text {
     font-size: 3rem;

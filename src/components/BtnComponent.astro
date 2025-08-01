@@ -10,7 +10,9 @@ const { href, text } = Astro.props;
 <a class="btn--button" href={href}><span class="btn--text">{text}</span></a>
 
 <script>
-  class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement {
+  // class HTMLAnchorElement extends HTMLElement implements HTMLAttributes {
+
+  class HTMLAnchorElement extends HTMLElement {
     hrefRaw: string | undefined;
     constructor() {
       super();
