@@ -1,0 +1,42 @@
+{
+  "New York City": {
+    "country": "USA",
+    "interest": ["City Life", "Culture", "Shopping"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "temperate",
+    "farForMe": "3"
+  },
+  "Mexico City": {
+    "country": "Mexico",
+    "interest": ["History", "Food", "Culture"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "subtropical",
+    "farForMe": "2"
+  },
+  "Toronto": {
+    "country": "Canada",
+    "interest": ["Multiculturalism", "City Life", "Food"],
+    "tripTime": 5,
+    "stayTime": 4,
+    "weather": "continental",
+    "farForMe": "2"
+  },
+  "Los Angeles": {
+    "country": "USA",
+    "interest": ["Beaches", "Entertainment", "Culture"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "mediterranean",
+    "farForMe": "4"
+  },
+  "Vancouver": {
+    "country": "Canada",
+    "interest": ["Nature", "Outdoor Activities", "City Life"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "oceanic",
+    "farForMe": "4"
+  }
+}

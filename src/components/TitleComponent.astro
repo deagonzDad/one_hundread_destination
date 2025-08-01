@@ -1,0 +1,41 @@
+---
+import type { TransitionAnimationValue } from "astro";
+interface Props {
+  fontSize?: number;
+  transitionAnimate: TransitionAnimationValue;
+  transitionName: string;
+}
+const { fontSize = 3, transitionAnimate, transitionName } = Astro.props;
+---
+
+<h1
+  class="title-font"
+  transition:animate={transitionAnimate}
+  transition:name={transitionName}
+>
+  <span class="hundred-style">100</span>
+  <span class="title-text">
+    DREAM<br />DESTINATIONS
+  </span>
+</h1>
+
+<style define:vars={{ fontSize }}>
+  .title-font {
+    --base-font-size: calc(var(--fontSize) * 1rem);
+    --min-font-size: calc(var(--base-font-size) / 3);
+    display: flex;
+    align-items: center;
+    font-size: clamp(var(--min-font-size), 5vw, var(--base-font-size));
+    color: white;
+    font-stretch: expanded;
+    line-height: 1.1;
+  }
+  .hundred-style {
+    font-size: 2.5em;
+    padding-top: 0.1em;
+    padding-right: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

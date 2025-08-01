@@ -1,0 +1,42 @@
+{
+  "Rio de Janeiro": {
+    "country": "Brazil",
+    "interest": ["Beaches", "Carnival", "Nature"],
+    "tripTime": 8,
+    "stayTime": 6,
+    "weather": "tropical",
+    "farForMe": "4"
+  },
+  "Buenos Aires": {
+    "country": "Argentina",
+    "interest": ["Tango", "Culture", "Food"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "temperate",
+    "farForMe": "3"
+  },
+  "Machu Picchu": {
+    "country": "Peru",
+    "interest": ["History", "Hiking", "Archaeology"],
+    "tripTime": 5,
+    "stayTime": 3,
+    "weather": "mountain",
+    "farForMe": "4"
+  },
+  "Santiago": {
+    "country": "Chile",
+    "interest": ["Mountains", "Wine", "City Life"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "mediterranean",
+    "farForMe": "3"
+  },
+  "Cartagena": {
+    "country": "Colombia",
+    "interest": ["History", "Beaches", "Colonial Architecture"],
+    "tripTime": 5,
+    "stayTime": 4,
+    "weather": "tropical",
+    "farForMe": "2"
+  }
+}

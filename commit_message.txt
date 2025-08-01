@@ -1,0 +1,9 @@
+feat: Set up development environment with linting, formatting, and Husky
+
+This commit introduces a comprehensive development setup to ensure code quality and consistency:
+
+- **ESLint:** Configured for JavaScript, TypeScript, and Astro files, integrated with Prettier.
+- **Prettier:** Set up for automatic code formatting, using `.prettierrc.json` for configuration.
+- **Husky:** Implemented with a `pre-commit` hook to automatically run linting and formatting before each commit.
+- **Dependency Categorization:** Corrected `sharp` dependency to `devDependencies`.
+- **Configuration Files:** Added `eslint.config.js`, `.prettierrc.json`, and `.husky/pre-commit`.

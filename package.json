@@ -1,0 +1,50 @@
+{
+  "name": "one_hundread_destination",
+  "version": "1.0.0",
+  "description": "This project is made based in the design of Anell 100 destination",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/ts-plugin": "^1.10.4",
+    "@eslint/js": "^9.31.0",
+    "@typescript-eslint/eslint-plugin": "^8.37.0",
+    "@typescript-eslint/parser": "^8.37.0",
+    "astro-eslint-parser": "^1.2.2",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-astro": "^1.3.1",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "material-icons": "^1.13.12",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "sharp": "^0.33.5",
+    "svgo": "^4.0.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.37.0"
+  },
+  "dependencies": {
+    "@fontsource/bebas-neue": "^5.1.0",
+    "@fontsource/roboto-mono": "^5.1.0",
+    "astro": "5.12.0"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

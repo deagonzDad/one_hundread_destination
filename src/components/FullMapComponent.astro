@@ -1,0 +1,77 @@
+---
+import FullMapImg from "@assets/svg/FullMap.webp";
+import { POSITION_NAME_MAP } from "@constants/worldMapConstants";
+import BtnContinent from "./BtnContinent.astro";
+const { width: imgWidth, height: imgHeight } = FullMapImg;
+---
+
+<div
+  class="map-container"
+  id="map-container"
+  data-natural-width={imgWidth}
+  data-natural-height={imgHeight}
+>
+  <img
+    src={FullMapImg.src}
+    alt="Map of the World"
+    class="map-img"
+    id="map-img"
+  />
+  <svg
+    width="100%"
+    height="100%"
+    class="continent-svg-overlay"
+    viewBox=`0 0 ${FullMapImg.width} ${FullMapImg.height}`
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+    {
+      Object.entries(POSITION_NAME_MAP).map(
+        ([keyAbbr, { coordinate, name }]) => {
+          return (
+            <foreignObject
+              x={coordinate.x}
+              y={coordinate.y}
+              width="0"
+              height="0"
+              class="continent-foreign-object"
+              data-origin-x={coordinate.x}
+              data-origin-y={coordinate.y}
+              data-continent-abbr={keyAbbr}
+            >
+              <BtnContinent
+                text={name}
+                href={`/continents/${keyAbbr}/`}
+                keyAbbr={keyAbbr}
+              />
+            </foreignObject>
+          );
+        },
+      )
+    }
+  </svg>
+</div>
+<script>
+  import "../utils/foreignObjectUpdater";
+  import "../utils/BtnContinentWebComponent";
+</script>
+<style>
+  .map-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+  }
+  .map-img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .continent-svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+  }
+</style>
