@@ -6,15 +6,19 @@ const TITTLE = "100 DESTINATIONS";
 <MainLayout title={TITTLE}>
   <place-component class="main-body">
     <div class="element-ctn ctn-left">
-      <div class="main--card">
-        <div class="place--image"></div>
-        <div class="data--ctn"></div>
+      <div class="main-card">
+        <div class="place-image">
+          <img src="/images/places/image.webp" id="placeImg" alt="continent" />
+        </div>
+        <div class="data-ctn">
+          <!-- <p>Hola Como estas</p> -->
+        </div>
       </div>
     </div>
     <div class="element-ctn">
-      <div class="card--main--ctn">
-        <h1 class="tittle--text"></h1>
-        <div class="card--ctn"></div>
+      <div class="card-main-ctn" id="selectorCityCtn">
+        <!-- <h1 class="tittle-text"></h1>
+        <div class="card-ctn"></div> -->
       </div>
       <div class="img-ctn">
         <img src="" id="continentImg" alt="continent" />
@@ -39,112 +43,62 @@ const TITTLE = "100 DESTINATIONS";
     justify-content: center;
     height: 100%;
   }
-  .place--image {
-    display: flex;
-    width: 100%;
-    height: 50%;
-    background-color: black;
-    border-radius: 60px;
-  }
-  .data--ctn {
-    display: flex;
-    height: 50%;
-    width: 100%;
-  }
-  .main--card {
+  .main-card {
     display: flex;
     background-color: white;
-    height: 50%;
+    height: 80%;
     width: 80%;
     border-radius: 60px;
     flex-direction: column;
     box-sizing: border-box;
     padding: 3rem;
   }
+  .place-image {
+    flex: 1;
+    width: 100%;
+    background-color: black;
+    border-radius: 60px;
+    overflow: hidden;
+    position: relative;
+  }
+  #placeImg {
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+  }
+  .data-ctn {
+    flex: 1;
+    display: flex;
+    width: 100%;
+  }
 
   .place--image,
   .data--ctn {
     display: flex;
   }
-  .card--main--ctn {
+  .card-main-ctn {
     display: flex;
-    background-color: beige;
-    height: 40%;
+    height: 20%;
+    width: 100%;
   }
   .img-ctn {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60%;
+    height: 80%;
   }
   #continentImg {
     background-color: none;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
   }
 </style>
 
 <script>
   import "@utils/PlaceWComponent";
-  // <div class="element--ctn">
-  // class Place extends HTMLElement implements IPlace {
-  //   constructor() {
-  //     super();
-  //     this.mapping = JSON.parse(this.dataset.mapping || "{}");
-  //     this.countryKey = this.dataset.countryKey || "";
-  //     this.visitKey = this.dataset.visitKey || "";
-  //   }
-
-  //   connectedCallback() {
-  //     this.getParams();
-  //     this.getCountryList();
-  //   }
-
-  //   getParams = () => {
-  //     const urlParams = new URLSearchParams(window.location.search);
-  //     const continent = urlParams.get(this.dataset.countryKey || "");
-  //     const place = urlParams.get(this.dataset.visitKey || "");
-  //     if (!place || !continent) {
-  //       throw Error("Doesn't exist elemenets");
-  //     }
-  //     this.dataset.countryName = continent;
-  //     this.dataset.placeName = place;
-  //     this.setImageAndGetJSON({ continent });
-  //   };
-
-  //   setImageAndGetJSON = ({ continent }: { continent: string }) => {
-  //     const imageSelectedCountry = JSON.parse(this.dataset.mapping || "{}")[continent] || "";
-  //     const mainImg = this.querySelector('img');
-  //     mainImg?.setAttribute("src", imageSelectedCountry);
-  //   };
-
-  //   getCountryList = async () => {
-  //     const response = await fetch(`/continents/${this.dataset.countryName}.json/`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const responseBody = await response.json();
-  //     const placeInfo = responseBody?.default?.[this.dataset.placeName || ""];
-
-  //     if (placeInfo) {
-  //       const titleElement = this.querySelector('.tittle--text');
-  //       if (titleElement) {
-  //         titleElement.textContent = placeInfo.name;
-  //       }
-
-  //       const cardCtn = this.querySelector('.card--ctn');
-  //       if (cardCtn) {
-  //         cardCtn.innerHTML = `
-  //           <p>${placeInfo.description}</p>
-  //           <p>Population: ${placeInfo.population}</p>
-  //           <p>Area: ${placeInfo.area}</p>
-  //         `;
-  //       }
-  //     }
-  //   };
-  // }
-  // customElements.define("place-astro", Place);
 </script>
