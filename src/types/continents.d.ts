@@ -1,41 +1,41 @@
-type Dictionary<Key extends string, Value> = {
+export type Dictionary<Key extends string, Value> = {
   [key in Key]: Value;
 };
-interface Coord {
+export interface Coord {
   x: number;
   y: number;
 }
-interface Continent {
+export interface Continent {
   coordinate: Coord;
   abbr: string;
   continentImg: string;
 }
-interface PlaceInfo {
+export interface PlaceInfo {
   country: string;
-  interest: string;
+  interest: string[];
   tripTime: number;
   stayTime: number;
   weather: string;
   farForMe: number;
 }
 
-interface Places {
+export interface Places {
   [key: string]: PlaceInfo;
 }
-interface IHTMLPlaceElement extends HTMLElement {
+export interface IHTMLPlaceElement extends HTMLElement {
   countryKey: string | undefined;
   placeKey: string | undefined;
   continentName: string | undefined;
   placeName: string | undefined;
 }
 
-interface IContinentSVG extends HTMLElement {
+export interface IContinentSVG extends HTMLElement {
   WIDTH_BTN: number;
 }
-interface IHTMLAnchorElement extends HTMLElement {
+export interface IHTMLAnchorElement extends HTMLElement {
   hrefRaw: string | undefined;
 }
-interface IPlace extends HTMLElement {
+export interface IPlace extends HTMLElement {
   mapping: Dictionary<string, string>;
   countryKey: string;
   visitKey: string;

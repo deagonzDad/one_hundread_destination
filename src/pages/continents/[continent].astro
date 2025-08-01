@@ -1,53 +1,46 @@
 ---
-import {
-  POSITION_NAME_MAP,
-  QUERYSTRING_COUNTRY_NAME,
-  QUERYSTRING_PLACE_TO_VISIT,
-} from "@constants/worldMapConstants";
-import BtnSelectorCity from "src/components/BtnSelectorCity.astro";
-import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
+import { POSITION_NAME_MAP } from "@constants/worldMapConstants";
+import { generateUrl } from "@utils/urlGenerator";
+
 import MainLayout from "src/layouts/MainLayout.astro";
-import type { Places } from "../types/continents";
+
 export async function getStaticPaths() {
   return Object.entries(POSITION_NAME_MAP).map(
-    ([key, { continentImg, abbr }], index, array) => {
-      const lastCity = array[index - 1]?.[1].abbr;
-      const nextCity = array[index + 1]?.[1].abbr;
+    ([key, { continentImg, name }], index, array) => {
+      const lastCity = array[index - 1]?.[0];
+      const nextCity = array[index + 1]?.[0];
       return {
-        params: { continent: abbr },
-        props: { continentImg, continentName: key, lastCity, nextCity },
+        params: { continent: key },
+        props: { continentImg, continentName: key, lastCity, nextCity, name },
       };
     },
   );
 }
-const { continentImg, continentName, lastCity, nextCity } = Astro.props;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/images/continents/*.{jpeg,jpg,png,gif}",
-);
-const imgPath = `/src/assets/images/continents/${continentImg}.png`;
-if (!images[imgPath]) throw new Error(`${imgPath} does not exist :(`);
-const countryFile = `../../../src/assets/json/${continentImg}.json`;
-const country: Places = await import(/* @vite-ignore */ countryFile, {
-  with: { type: "json" },
-});
-if (!country.default)
-  throw new Error(`${continentImg} the file doesn't exist :(`);
+
+const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
 ---
 
 <MainLayout title={continentName}>
-  <article class="main--body">
-    <div class="secondary--block">
-      <Image src={images[imgPath]()} alt="continent" class="main--img" />
+  <article
+    class="main-body"
+    id="main-article"
+    data-continent-img={continentImg}
+    data-continent-name={continentName}
+  >
+    <div class="secondary-block">
+      <img src="" alt="continent" class="main-img" id="main-img" />
     </div>
-    <div class="secondary--block">
-      <div class="header--bar">
-        <div class="card--ctn">
-          <div class="card--header">
+    <div class="secondary-block">
+      <div class="header-bar">
+        <div class="card-ctn">
+          <div class="card-header">
             {
               lastCity ? (
-                <a href={`/continents/${lastCity}/`} class="btn--change">
-                  <span class="material-icons md-dark icon--style">
+                <a
+                  href={generateUrl(`/continents/${lastCity}/`)}
+                  class="btn-change"
+                >
+                  <span class="material-icons md-dark icon-style">
                     arrow_back
                   </span>
                 </a>
@@ -55,11 +48,14 @@ if (!country.default)
                 <span />
               )
             }
-            <p class="secondary--title header--elem">{continentName}</p>
+            <p class="secondary-title">{name}</p>
             {
               nextCity ? (
-                <a href={`/continents/${nextCity}/`} class="btn--change">
-                  <span class="material-icons md-dark icon--style">
+                <a
+                  href={generateUrl(`/continents/${nextCity}/`)}
+                  class="btn-change"
+                >
+                  <span class="material-icons md-dark icon-style">
                     arrow_forward
                   </span>
                 </a>
@@ -68,121 +64,155 @@ if (!country.default)
               )
             }
           </div>
-          <div class="card--body">
-            <div class="card--body--ctn">
-              {
-                Object.entries(country.default).map(([key, item]) => {
-                  return (
-                    <BtnSelectorCity
-                      continentKey={QUERYSTRING_COUNTRY_NAME}
-                      placeKey={QUERYSTRING_PLACE_TO_VISIT}
-                      countryName={continentImg}
-                      name={key}
-                      info={item}
-                    />
-                  );
-                })
-              }
-            </div>
+          <div class="card-body">
+            <div class="card-body-ctn" id="card-body-ctn"></div>
           </div>
         </div>
       </div>
     </div>
   </article>
 </MainLayout>
+
 <script>
-  //     async function fetchItems() {
-  //     const response = await fetch('/assets/json/NorthAmerica.json');
-  //     const items = await response.json();
-  //     Do something with the fetched items, e.g., update the DOM
-  //     console.log(items);
-  // }
-  // // Call the function to fetch the data
-  //     fetchItems();
+  import "@utils/SelectorCityWComponent";
+  import { GetJson, generateUrl } from "@utils/urlGenerator";
+  import { SetDataAttributes } from "@utils/DataParsers";
+  import type { Places } from "src/types/continents";
+
+  function initializePage() {
+    const mainData = document.getElementById("main-article")?.dataset;
+    const mainImg = document.getElementById("main-img") as HTMLImageElement;
+    const cardBodyCtn = document.getElementById("card-body-ctn");
+
+    if (mainData && mainImg && cardBodyCtn) {
+      (async () => {
+        const jsonUrl = `json/${mainData.continentImg}.json`;
+        const file = (await GetJson(jsonUrl)) as Places;
+        cardBodyCtn.innerHTML = "";
+
+        const randomColorGen = () =>
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+        const validCircles = ["doubleRing", "smallRing", "bigRing"];
+        const keys = Object.keys(validCircles);
+        const randomIndexGen = () => Math.floor(Math.random() * keys.length);
+
+        Object.entries(file).map(([key, item]) => {
+          const cityElement = document.createElement("selector-city");
+
+          //RandomSelectorTemporal
+          const randomNumberTemp = Math.floor(Math.random() * 5);
+
+          const mainColor = randomColorGen();
+          const secondaryColor = randomColorGen();
+
+          SetDataAttributes(cityElement, {
+            placeKey: key,
+            countryKey: item.country.toLowerCase().replace(/\s/g, "-"),
+            continentName: mainData.continentName ?? "",
+            placeName: item.country,
+            weather: "test",
+            firstLineMain: mainColor,
+            firstLineSecondary: secondaryColor,
+            secondLine: `${randomNumberTemp}`,
+            thirdLine: `${validCircles[randomIndexGen()]}`,
+          });
+
+          cardBodyCtn.appendChild(cityElement);
+        });
+      })();
+      const imgUrl = `images/continents/${mainData.continentImg}.webp`;
+      mainImg.src = generateUrl(imgUrl);
+    }
+  }
+
+  if (document.startViewTransition()) {
+    document.addEventListener("astro:after-swap", initializePage);
+    initializePage();
+  } else {
+    document.addEventListener("DOMContentLoaded", initializePage);
+  }
 </script>
 <style>
-  .card--body {
-    display: flex;
+  .main-body {
     height: 100%;
-    margin-bottom: 10%;
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 0 2rem 1rem rgba(255, 255, 255, 0.1) inset;
-    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(0%, 100%);
   }
-  .card--body--ctn {
-    /* display: flex;
-        flex-direction: column; */
-    height: 100%;
+  .main-img {
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
     width: 100%;
-    padding: 0 1rem;
-    overflow-y: scroll;
-    scrollbar-color: white rgb(0, 0, 0);
-    scrollbar-gutter: stable both-edges;
-    scrollbar-width: auto;
+    height: 100%;
   }
-  .main--body {
-    display: flex;
-    height: 100vh;
-    flex-direction: row;
-  }
-  .main--img {
-    max-width: 100%;
-    height: auto;
-  }
-  .secondary--block {
-    justify-content: center;
+  .secondary-block {
     align-items: center;
     display: flex;
-    flex-grow: 0;
     width: 100%;
+    height: 100%;
   }
-  .secondary--title {
+  .secondary-title {
     font-family: "Segoe UI Regular";
     text-transform: capitalize;
     font-size: 3rem;
   }
-  .header--bar {
-    display: flex;
-    width: 80%;
+  .header-bar {
+    width: 95%;
     height: 100%;
-    align-items: flex-end;
+    align-self: flex-start;
   }
-  .card--header {
+  .card-ctn {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    height: 90%;
+    width: 100%;
+  }
+  .card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  .card--ctn {
+  .card-body {
     display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-    height: 80%;
-    width: 100%;
+    height: 100%;
+    padding: 2%;
+    border-radius: 20px;
+    box-shadow: 0 0 2rem 1rem rgba(255, 255, 255, 0.1) inset;
+    overflow-y: hidden;
   }
-  .icon--style {
+  .card-body-ctn {
+    height: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    overflow-y: scroll;
+    scrollbar-color: white rgb(243, 241, 241);
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+  }
+  .icon-style {
     font-size: 5rem;
   }
-  .btn--change:visited {
+  .btn-change:visited {
     text-decoration: none;
     color: white;
   }
-  /* .header--elem {
-        padding: 0;
-        margin: 0;
-    } */
+
   @media screen and (max-width: 1000px) {
-    .main--body {
-      flex-direction: column;
+    .main-body {
+      grid-template-columns: minmax(0%, 100%);
+      grid-template-rows: 1fr 1fr;
     }
-    .secondary--title {
+    .secondary-title {
       font-size: 2rem;
     }
-    .card--body--ctn {
+    .card-body-ctn {
       overflow-y: visible;
     }
-    .card--ctn {
+    .card-ctn {
       align-content: flex-start;
       height: 100%;
     }

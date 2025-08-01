@@ -37,7 +37,7 @@
   100% {
     /* position: fixed; */
     /* height: 100vh; */
-    background-color: red;
+    /* background-color: red; */
 
     /* transform: translate */
     /* top: 50%;
@@ -46,7 +46,7 @@
   }
   0% {
     /* position: fixed; */
-    background-color: red;
+    /* background-color: red; */
     /* height: 100vh; */
     /* top: 0%;
     left: 0%; */

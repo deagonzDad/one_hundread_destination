@@ -1,8 +1,6 @@
 ---
 import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import BtnComponent from "src/components/BtnComponent.astro";
-// import FullMap from "src/assets/svg/FullMap.svg?raw";
 import FullMapImg from "@assets/svg/FullMap.webp";
 import indexStyles from "./index.module.css";
 import {
@@ -10,6 +8,7 @@ import {
   TextAnimationMix,
   // TextAnimationUpper,
 } from "src/utils/transitions";
+import BtnContinent from "src/components/BtnContinent.astro";
 ---
 
 <Layout title="100 dream destinations by Anell">
@@ -26,7 +25,7 @@ import {
         transitionAnimate={TextAnimationMix}
         transitionName="titleText"
       />
-      <BtnComponent href="continents/" text="Start Exploring" />
+      <BtnContinent href="continents/" text="Start Exploring" />
     </div>
   </div>
 </Layout>
