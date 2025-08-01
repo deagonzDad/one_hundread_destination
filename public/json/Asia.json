@@ -1,0 +1,42 @@
+{
+  "Tokyo": {
+    "country": "Japan",
+    "interest": ["Culture", "Technology", "Food"],
+    "tripTime": 9,
+    "stayTime": 7,
+    "weather": "temperate",
+    "farForMe": "5"
+  },
+  "Mumbai": {
+    "country": "India",
+    "interest": ["Culture", "History", "Food"],
+    "tripTime": 8,
+    "stayTime": 6,
+    "weather": "tropical",
+    "farForMe": "4"
+  },
+  "Beijing": {
+    "country": "China",
+    "interest": ["History", "Culture", "Architecture"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "continental",
+    "farForMe": "4"
+  },
+  "Dubai": {
+    "country": "UAE",
+    "interest": ["Luxury", "Modern Architecture", "Shopping"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "desert",
+    "farForMe": "3"
+  },
+  "Bangkok": {
+    "country": "Thailand",
+    "interest": ["Food", "Culture", "Nightlife"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "tropical",
+    "farForMe": "4"
+  }
+}

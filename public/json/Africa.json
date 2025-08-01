@@ -1,0 +1,42 @@
+{
+  "Cairo": {
+    "country": "Egypt",
+    "interest": ["History", "Culture"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "desert",
+    "farForMe": "3"
+  },
+  "Cape Town": {
+    "country": "South Africa",
+    "interest": ["Nature", "Adventure"],
+    "tripTime": 10,
+    "stayTime": 7,
+    "weather": "mediterranean",
+    "farForMe": "4"
+  },
+  "Marrakech": {
+    "country": "Morocco",
+    "interest": ["Culture", "Markets"],
+    "tripTime": 5,
+    "stayTime": 4,
+    "weather": "arid",
+    "farForMe": "2"
+  },
+  "Nairobi": {
+    "country": "Kenya",
+    "interest": ["Wildlife", "Safari"],
+    "tripTime": 8,
+    "stayTime": 6,
+    "weather": "savanna",
+    "farForMe": "4"
+  },
+  "Lagos": {
+    "country": "Nigeria",
+    "interest": ["Culture", "Music"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "tropical",
+    "farForMe": "3"
+  }
+}

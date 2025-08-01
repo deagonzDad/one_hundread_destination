@@ -1,0 +1,41 @@
+{
+  "Sydney": {
+    "country": "Australia",
+    "interest": ["Beaches", "City Life", "Landmarks"],
+    "tripTime": 10,
+    "stayTime": 7,
+    "weather": "temperate",
+    "farForMe": "5"
+  },
+  "Melbourne": {
+    "country": "Australia",
+    "interest": ["Culture", "Food", "Sports"],
+    "tripTime": 9,
+    "stayTime": 6,
+    "weather": "temperate",
+    "farForMe": "5"
+  },
+  "Brisbane": {
+    "country": "Australia",
+    "interest": ["Nature", "Relaxation", "Wildlife"],
+    "tripTime": 8,
+    "stayTime": 5,
+    "weather": "subtropical",
+    "farForMe": "4"
+  },
+  "Perth": {
+    "country": "Australia",
+    "interest": ["Beaches", "Outdoor Activities", "Wine"],
+    "tripTime": 11,
+    "stayTime": 7,
+    "weather": "mediterranean",
+    "farForMe": "5"
+  },
+  "Adelaide": {
+    "country": "Australia",
+    "interest": ["Wine", "Culture", "Festivals"],
+    "tripTime": 8,
+    "stayTime": 5,
+    "weather": "mediterranean",    "farForMe": "4"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "Paris": {
+    "country": "France",
+    "interest": ["Culture", "Art", "Romance"],
+    "tripTime": 7,
+    "stayTime": 5,
+    "weather": "temperate",
+    "farForMe": "2"
+  },
+  "Rome": {
+    "country": "Italy",
+    "interest": ["History", "Food", "Architecture"],
+    "tripTime": 6,
+    "stayTime": 4,
+    "weather": "mediterranean",
+    "farForMe": "2"
+  },
+  "London": {
+    "country": "UK",
+    "interest": ["History", "Culture", "Shopping"],
+    "tripTime": 8,
+    "stayTime": 6,
+    "weather": "temperate",
+    "farForMe": "1"
+  },
+  "Berlin": {
+    "country": "Germany",
+    "interest": ["History", "Art", "Nightlife"],
+    "tripTime": 5,
+    "stayTime": 4,
+    "weather": "temperate",
+    "farForMe": "2"
+  },
+  "Amsterdam": {
+    "country": "Netherlands",
+    "interest": ["Canals", "Art", "Cycling"],
+    "tripTime": 4,
+    "stayTime": 3,
+    "weather": "temperate",
+    "farForMe": "1"
+  }
+}
