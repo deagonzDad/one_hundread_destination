@@ -10,16 +10,11 @@ const TITTLE = "100 DESTINATIONS";
         <div class="place-image">
           <img src="/images/places/image.webp" id="placeImg" alt="continent" />
         </div>
-        <div class="data-ctn">
-          <!-- <p>Hola Como estas</p> -->
-        </div>
+        <div class="data-ctn" id="placesScroll"></div>
       </div>
     </div>
     <div class="element-ctn">
-      <div class="card-main-ctn" id="selectorCityCtn">
-        <!-- <h1 class="tittle-text"></h1>
-        <div class="card-ctn"></div> -->
-      </div>
+      <div class="card-main-ctn" id="selectorCityCtn"></div>
       <div class="img-ctn">
         <img src="" id="continentImg" alt="continent" />
       </div>
@@ -74,6 +69,27 @@ const TITTLE = "100 DESTINATIONS";
     flex: 1;
     display: flex;
     width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .accordion-container {
+    border: 2px solid red;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  global(.accordion-item) {
+    background-color: #8e44ad;
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  global(.accordion-item[open]) {
+    background-color: #8e44ad;
   }
 
   .place--image,
@@ -82,7 +98,7 @@ const TITTLE = "100 DESTINATIONS";
   }
   .card-main-ctn {
     display: flex;
-    height: 20%;
+    height: 15%;
     width: 100%;
   }
   .img-ctn {
