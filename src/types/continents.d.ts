@@ -10,6 +10,11 @@ export interface Continent {
   abbr: string;
   continentImg: string;
 }
+
+interface PlaceToVisit {
+  placeName: string;
+  description: string;
+}
 export interface PlaceInfo {
   country: string;
   interest: string[];
@@ -17,6 +22,7 @@ export interface PlaceInfo {
   stayTime: number;
   weather: string;
   farForMe: number;
+  placesToVisit: PlaceToVisit[];
 }
 
 export interface Places {

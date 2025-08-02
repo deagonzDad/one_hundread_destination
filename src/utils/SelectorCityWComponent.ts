@@ -23,8 +23,17 @@ const patterns = {
 };
 
 type ringKeys = keyof typeof ringType;
-
+type baseDataset = string | undefined;
 class HTMLPlaceElement extends HTMLElement {
+  private countryKey: baseDataset;
+  private placeKey: baseDataset;
+  private continentName: baseDataset;
+  private placeName: baseDataset;
+  private weatherType: baseDataset;
+  private firstLineMain: baseDataset;
+  private firstLineSecondary: baseDataset;
+  private secondLine: number | null = null;
+  private thirdLine: ringKeys = "doubleRing";
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -47,19 +56,28 @@ class HTMLPlaceElement extends HTMLElement {
   }
 
   connectedCallback() {
-    const countryKey = this.dataset.countryKey;
-    const placeKey = this.dataset.placeKey;
-    const continentName = this.dataset.continentName;
-    const placeName = this.dataset.placeName;
-    const weatherType = this.dataset.weather;
-    const firstLineMain = this.dataset.firstLineMain;
-    const firstLineSecondary = this.dataset.firstLineSecondary;
+    this._extractAndFilterData();
+    this._createNewElements();
+    this.addEventListener("click", this._createEventListener);
+  }
 
-    const secondLine = getPositiveInteger(this.dataset.secondLine);
-    const thirdLine = this.dataset.thirdLine as ringKeys;
+  disconnectCallback() {
+    this.removeEventListener("click", this._createEventListener);
+  }
 
-    // const thirdLine = this.dataset.thirdLine;
-    // const extraThirdLine = this.dataset.extraThirdLine;
+  private _extractAndFilterData() {
+    this.countryKey = this.dataset.countryKey;
+    this.placeKey = this.dataset.placeKey;
+    this.continentName = this.dataset.continentName;
+    this.placeName = this.dataset.placeName;
+    this.weatherType = this.dataset.weather;
+    this.firstLineMain = this.dataset.firstLineMain;
+    this.firstLineSecondary = this.dataset.firstLineSecondary;
+    this.secondLine = getPositiveInteger(this.dataset.secondLine);
+    this.thirdLine = this.dataset.thirdLine as ringKeys;
+  }
+
+  private _createNewElements() {
     const imgDivCtn = this.shadowRoot!.querySelector(
       "#weather-ctn",
     ) as HTMLDivElement;
@@ -76,7 +94,7 @@ class HTMLPlaceElement extends HTMLElement {
       "#third-line",
     ) as HTMLDivElement;
     if (
-      weatherType &&
+      this.weatherType &&
       imgDivCtn &&
       textDivCtn &&
       firstLineDivCtn &&
@@ -84,18 +102,20 @@ class HTMLPlaceElement extends HTMLElement {
       thirdLineDivCtn
     ) {
       const imgCtn = document.createElement("img") as HTMLImageElement;
-      imgCtn.src = generateUrl(`/images/components/weather_${weatherType}.png`);
+      imgCtn.src = generateUrl(
+        `/images/components/weather_${this.weatherType}.png`,
+      );
       imgCtn.classList.add("weather-img");
       imgDivCtn.appendChild(imgCtn);
 
-      textDivCtn.innerHTML = `<p>${placeKey}</p><small>${countryKey}</small>`;
+      textDivCtn.innerHTML = `<p>${this.placeKey}</p><small>${this.countryKey}</small>`;
 
-      firstLineDivCtn.innerHTML = `<div class="sphere" style="--var-main:${firstLineMain}; --var-secondary:${firstLineSecondary}"></div>`;
+      firstLineDivCtn.innerHTML = `<div class="sphere" style="--var-main:${this.firstLineMain}; --var-secondary:${this.firstLineSecondary}"></div>`;
 
-      thirdLineDivCtn.innerHTML = ringType[thirdLine!];
+      thirdLineDivCtn.innerHTML = ringType[this.thirdLine];
 
       const dotLayout: string = patterns[
-        (secondLine as keyof typeof patterns) ?? 1
+        (this.secondLine as keyof typeof patterns) ?? 1
       ]
         .map((cellType) => {
           if (cellType === "o") {
@@ -108,19 +128,22 @@ class HTMLPlaceElement extends HTMLElement {
 
       secondLineDivCtn.innerHTML = dotLayout;
     }
+  }
+  private _createEventListener() {
+    if (
+      this.countryKey &&
+      this.placeKey &&
+      this.continentName &&
+      this.placeName
+    ) {
+      const redirectionUrl = generateUrl(
+        `/continents/place/?${QUERYSTRING_COUNTRY_NAME}=${this.countryKey}&${QUERYSTRING_PLACE_TO_VISIT}=${this.placeKey}&${QUERYSTRING_CONTINENT}=${this.continentName}`,
+      );
 
-    this.addEventListener("click", () => {
-      if (countryKey && placeKey && continentName && placeName) {
-        // const timestamp = Date.now();
-        const redirectionUrl = generateUrl(
-          `/continents/place/?${QUERYSTRING_COUNTRY_NAME}=${countryKey}&${QUERYSTRING_PLACE_TO_VISIT}=${placeKey}&${QUERYSTRING_CONTINENT}=${continentName}`,
-        );
-
-        window.location.href = redirectionUrl;
-      } else {
-        console.error("Missing data attributes on selector-city element.");
-      }
-    });
+      window.location.href = redirectionUrl;
+    } else {
+      console.error("Missing data attributes on selector-city element.");
+    }
   }
 }
 
