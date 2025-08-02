@@ -5,7 +5,21 @@
     "tripTime": 10,
     "stayTime": 7,
     "weather": "temperate",
-    "farForMe": "5"
+    "farForMe": "5",
+    "placesToVisit": [
+      {
+        "placeName": "Sydney Opera House",
+        "description": "An architectural masterpiece and one of the most recognizable buildings in the world."
+      },
+      {
+        "placeName": "Sydney Harbour Bridge",
+        "description": "Climb this iconic bridge for stunning panoramic views of the harbor and city."
+      },
+      {
+        "placeName": "Bondi Beach",
+        "description": "One of the world's most famous beaches, perfect for surfing, swimming, or relaxing."
+      }
+    ]
   },
   "Melbourne": {
     "country": "Australia",
@@ -13,7 +27,21 @@
     "tripTime": 9,
     "stayTime": 6,
     "weather": "temperate",
-    "farForMe": "5"
+    "farForMe": "5",
+    "placesToVisit": [
+      {
+        "placeName": "Federation Square",
+        "description": "A modern piazza and cultural hub, home to museums, galleries, and restaurants."
+      },
+      {
+        "placeName": "Queen Victoria Market",
+        "description": "A historic landmark and bustling market with a huge variety of fresh produce and goods."
+      },
+      {
+        "placeName": "Royal Botanic Gardens",
+        "description": "A beautiful and peaceful oasis in the heart of the city, perfect for a relaxing stroll."
+      }
+    ]
   },
   "Brisbane": {
     "country": "Australia",
@@ -21,7 +49,21 @@
     "tripTime": 8,
     "stayTime": 5,
     "weather": "subtropical",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Lone Pine Koala Sanctuary",
+        "description": "The world's first and largest koala sanctuary, where you can hold a koala and feed kangaroos."
+      },
+      {
+        "placeName": "South Bank Parklands",
+        "description": "A vibrant riverside park with a man-made beach, restaurants, and entertainment."
+      },
+      {
+        "placeName": "Story Bridge",
+        "description": "An iconic bridge offering adventure climbs and stunning views of the city."
+      }
+    ]
   },
   "Perth": {
     "country": "Australia",
@@ -29,13 +71,42 @@
     "tripTime": 11,
     "stayTime": 7,
     "weather": "mediterranean",
-    "farForMe": "5"
+    "farForMe": "5",
+    "placesToVisit": [
+      {
+        "placeName": "Kings Park and Botanic Garden",
+        "description": "One of the world's largest inner-city parks, with stunning views and unique flora."
+      },
+      {
+        "placeName": "Cottesloe Beach",
+        "description": "A popular and picturesque beach, perfect for swimming, surfing, and watching the sunset."
+      },
+      {
+        "placeName": "Fremantle Prison",
+        "description": "A former maximum-security prison that offers fascinating and spooky tours."
+      }
+    ]
   },
   "Adelaide": {
     "country": "Australia",
     "interest": ["Wine", "Culture", "Festivals"],
     "tripTime": 8,
     "stayTime": 5,
-    "weather": "mediterranean",    "farForMe": "4"
+    "weather": "mediterranean",
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Adelaide Central Market",
+        "description": "A vibrant market with a huge variety of fresh produce, gourmet food, and local products."
+      },
+      {
+        "placeName": "Glenelg Beach",
+        "description": "A popular seaside destination with a beautiful beach, shops, and restaurants."
+      },
+      {
+        "placeName": "Barossa Valley",
+        "description": "One of Australia's most famous wine regions, with world-class wineries and stunning scenery."
+      }
+    ]
   }
 }

@@ -55,7 +55,10 @@ const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
                   href={generateUrl(`/continents/${nextCity}/`)}
                   class="btn-change"
                 >
-                  <span class="material-icons md-dark icon-style">
+                  <span
+                    class="material-icons md-dark icon-style"
+                    style="color:white;"
+                  >
                     arrow_forward
                   </span>
                 </a>
@@ -77,6 +80,12 @@ const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
   import "@utils/SelectorCityWComponent";
   import { GetJson, generateUrl } from "@utils/urlGenerator";
   import { SetDataAttributes } from "@utils/DataParsers";
+  import {
+    generateRandomNumber,
+    randomColorGen,
+    randomIndexGen,
+    validCircles,
+  } from "@utils/RandomFiller";
   import type { Places } from "src/types/continents";
 
   function initializePage() {
@@ -90,18 +99,11 @@ const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
         const file = (await GetJson(jsonUrl)) as Places;
         cardBodyCtn.innerHTML = "";
 
-        const randomColorGen = () =>
-          "#" + Math.floor(Math.random() * 16777215).toString(16);
-
-        const validCircles = ["doubleRing", "smallRing", "bigRing"];
-        const keys = Object.keys(validCircles);
-        const randomIndexGen = () => Math.floor(Math.random() * keys.length);
-
         Object.entries(file).map(([key, item]) => {
           const cityElement = document.createElement("selector-city");
 
           //RandomSelectorTemporal
-          const randomNumberTemp = Math.floor(Math.random() * 5);
+          const randomNumberTemp = generateRandomNumber();
 
           const mainColor = randomColorGen();
           const secondaryColor = randomColorGen();
@@ -141,8 +143,7 @@ const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
     grid-template-rows: minmax(0%, 100%);
   }
   .main-img {
-    object-fit: cover;
-    object-position: center;
+    object-fit: contain;
     overflow: hidden;
     width: 100%;
     height: 100%;

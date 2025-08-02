@@ -5,7 +5,21 @@
     "tripTime": 8,
     "stayTime": 6,
     "weather": "tropical",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Christ the Redeemer",
+        "description": "An iconic statue of Jesus Christ, located at the top of Corcovado Mountain."
+      },
+      {
+        "placeName": "Sugarloaf Mountain",
+        "description": "A peak that offers stunning views of the city and the surrounding bay."
+      },
+      {
+        "placeName": "Copacabana Beach",
+        "description": "One of the most famous beaches in the world, with a lively atmosphere and beautiful scenery."
+      }
+    ]
   },
   "Buenos Aires": {
     "country": "Argentina",
@@ -13,7 +27,21 @@
     "tripTime": 7,
     "stayTime": 5,
     "weather": "temperate",
-    "farForMe": "3"
+    "farForMe": "3",
+    "placesToVisit": [
+      {
+        "placeName": "La Boca",
+        "description": "A colorful neighborhood with a rich history and a vibrant arts scene."
+      },
+      {
+        "placeName": "Recoleta Cemetery",
+        "description": "A famous cemetery with elaborate mausoleums and the tomb of Eva Perón."
+      },
+      {
+        "placeName": "Teatro Colón",
+        "description": "One of the world's most famous opera houses, with stunning architecture and acoustics."
+      }
+    ]
   },
   "Machu Picchu": {
     "country": "Peru",
@@ -21,7 +49,21 @@
     "tripTime": 5,
     "stayTime": 3,
     "weather": "mountain",
-    "farForMe": "4"
+    "farForMe": "4",
+    "placesToVisit": [
+      {
+        "placeName": "Huayna Picchu",
+        "description": "A mountain that offers stunning views of Machu Picchu and the surrounding landscape."
+      },
+      {
+        "placeName": "Sun Gate",
+        "description": "The main entrance to Machu Picchu, with breathtaking views of the ancient city."
+      },
+      {
+        "placeName": "Temple of the Sun",
+        "description": "A sacred temple dedicated to the sun god, with impressive stonework and astronomical alignments."
+      }
+    ]
   },
   "Santiago": {
     "country": "Chile",
@@ -29,7 +71,21 @@
     "tripTime": 6,
     "stayTime": 4,
     "weather": "mediterranean",
-    "farForMe": "3"
+    "farForMe": "3",
+    "placesToVisit": [
+      {
+        "placeName": "Cerro San Cristobal",
+        "description": "A hill that offers panoramic views of the city and the Andes Mountains."
+      },
+      {
+        "placeName": "Costanera Center",
+        "description": "The tallest building in Latin America, with an observation deck offering stunning views."
+      },
+      {
+        "placeName": "Valparaiso",
+        "description": "A colorful port city with a rich history and a vibrant arts scene."
+      }
+    ]
   },
   "Cartagena": {
     "country": "Colombia",
@@ -37,6 +93,20 @@
     "tripTime": 5,
     "stayTime": 4,
     "weather": "tropical",
-    "farForMe": "2"
+    "farForMe": "2",
+    "placesToVisit": [
+      {
+        "placeName": "Walled City",
+        "description": "A historic walled city with colorful colonial buildings, charming streets, and a vibrant atmosphere."
+      },
+      {
+        "placeName": "Castillo San Felipe de Barajas",
+        "description": "A massive fortress that offers stunning views of the city and the Caribbean Sea."
+      },
+      {
+        "placeName": "Rosario Islands",
+        "description": "A group of islands with beautiful beaches, clear waters, and a variety of marine life."
+      }
+    ]
   }
 }
