@@ -13,6 +13,14 @@ import {
 import { SetDataAttributes } from "./DataParsers";
 import "@utils/SelectorCityWComponent";
 import type { Places } from "src/types/continents";
+
+const Selectors = {
+  SCROLLER: "#placesScroll",
+  CONTINENT_IMG: "#continentImg",
+  SELECTOR_CITY: "#selectorCityCtn",
+  SCROLLER_INNER: ".scroller__inner",
+} as const;
+
 class HTMLPlaceElement extends HTMLElement {
   public country: string | null = null;
   public place: string | null = null;
@@ -47,13 +55,14 @@ class HTMLPlaceElement extends HTMLElement {
   }
   private _setImageInPlace() {
     const continentImg = this.querySelector(
-      "#continentImg",
+      Selectors.CONTINENT_IMG,
     ) as HTMLImageElement;
     const imgUrl = `images/continents/${this.continent}.webp`;
     continentImg.src = generateUrl(imgUrl);
+    continentImg.alt = `A stylized image of the continent of ${this.continent}`;
   }
   private _setSelectorCity() {
-    const selectorCtn = this.querySelector("#selectorCityCtn");
+    const selectorCtn = this.querySelector(Selectors.SELECTOR_CITY);
     if (selectorCtn) {
       const mainColor = randomColorGen();
       const secondaryColor = randomColorGen();
@@ -75,32 +84,38 @@ class HTMLPlaceElement extends HTMLElement {
   }
 
   private async _fillDataPlaces() {
-    const file = (await GetJson(`json/${this.continent}.json`)) as Places;
-    const scrollCtn = this.querySelector("#placesScroll") as HTMLDivElement;
-    if (file && scrollCtn) {
-      const place = file[this.place ?? ""];
+    try {
+      const file = (await GetJson(`json/${this.continent}.json`)) as Places;
+      const scrollCtn = this.querySelector(
+        Selectors.SCROLLER,
+      ) as HTMLDivElement;
+      if (file && scrollCtn) {
+        const place = file[this.place ?? ""];
 
-      const htmlData = place?.placesToVisit
-        .map(({ placeName, description }, idx) =>
-          this._createDetails(placeName, description, idx + 1),
-        )
-        .join("");
-      const totalItems = place?.placesToVisit.length;
-      const baseCardWidth = 150;
-      scrollCtn.innerHTML = `<div class="scroller__inner" style="--width-card:${baseCardWidth}px;--quantity:${totalItems};">${htmlData}</div>`;
-      this._setupInfiniteScroll();
+        const htmlData = place?.placesToVisit
+          .map(({ placeName, description }, idx) =>
+            this._createDetails(placeName, description, idx + 1),
+          )
+          .join("");
+        const totalItems = place?.placesToVisit.length;
+        const baseCardWidth = 150;
+        scrollCtn.innerHTML = `<div class="scroller__inner" style="--width-card:${baseCardWidth}px;--quantity:${totalItems};">${htmlData}</div>`;
+        this._setupInfiniteScroll();
+      }
+    } catch (error) {
+      console.error("Failed to fill data places:", error);
     }
   }
 
   private _setupInfiniteScroll() {
-    const scroller = this.querySelector("#placesScroll");
+    const scroller = this.querySelector(Selectors.SCROLLER);
     if (scroller) {
       // Future infinite scroll setup can go here
     }
   }
 
   private _setupPauseOnHover() {
-    this._scroller = this.querySelector("#placesScroll");
+    this._scroller = this.querySelector(Selectors.SCROLLER);
     if (this._scroller) {
       this._scroller.addEventListener("mouseenter", this._handleMouseEnter);
       this._scroller.addEventListener("mouseleave", this._handleMouseLeave);
@@ -139,6 +154,11 @@ class HTMLPlaceElement extends HTMLElement {
         transition: background-color 0.3s ease;
         display:flex;
         flex-direction:column;
+      }
+
+      .accordion-item:focus-within {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
       }
 
       .accordion-item > summary {
