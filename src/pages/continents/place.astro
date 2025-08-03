@@ -69,29 +69,16 @@ const TITTLE = "100 DESTINATIONS";
     flex: 1;
     display: flex;
     width: 100%;
-    align-items: center;
-    gap: 1rem;
+    align-items: start;
+    padding-top: 3rem;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10% 90%,
+      transparent
+    );
   }
-
-  .accordion-container {
-    border: 2px solid red;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  global(.accordion-item) {
-    background-color: #8e44ad;
-    color: white;
-    border-radius: 8px;
-    padding: 16px;
-    width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-  }
-  global(.accordion-item[open]) {
-    background-color: #8e44ad;
-  }
-
   .place--image,
   .data--ctn {
     display: flex;
@@ -112,6 +99,21 @@ const TITTLE = "100 DESTINATIONS";
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+  @media (max-width: 1000px) {
+    .main-body {
+      flex-direction: column;
+    }
+    .element-ctn {
+      width: 100%;
+    }
+    .main-card {
+      height: 40rem;
+      overflow: hidden;
+    }
+    .card-main-ctn {
+      height: 30%;
+    }
   }
 </style>
 
