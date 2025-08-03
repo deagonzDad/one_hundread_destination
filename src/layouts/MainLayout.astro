@@ -1,12 +1,11 @@
 ---
 import "@styles/global.css";
-// import { ClientRouter } from "astro:transitions";
 import "@fontsource/bebas-neue";
-// import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "./Layout.astro";
 import TitleComponent from "src/components/TitleComponent.astro";
 import { TextAnimationMix } from "src/utils/transitions";
-// import continentsStyle from "./mainLayout.module.css";
+import igIcon from "@assets/svg/ig-icon.svg";
+import linkedInIcon from "@assets/svg/linkedIn-icon.svg";
 interface Props {
   title: string;
   description?: string;
@@ -24,7 +23,30 @@ const { title, description = "A journey to 100 dream destinations." } =
         transitionAnimate={TextAnimationMix}
       />
     </div>
-    <nav><p>Hola</p></nav>
+    <nav>
+      <div class="social-links">
+        <a
+          href="https://www.linkedin.com/in/anellvelazquez/"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={linkedInIcon.src} alt="LinkedIn" />
+        </a>
+        <a
+          href="https://www.instagram.com/anell.design/"
+          aria-label="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={igIcon.src} alt="Instagram" />
+        </a>
+        <!-- Add more social media links here -->
+      </div>
+      <button class="nav-button" onclick="history.back()" aria-label="Go Back">
+        <span class="material-icons">arrow_back</span>
+      </button>
+    </nav>
   </header>
   <main>
     <slot />
@@ -43,16 +65,65 @@ const { title, description = "A journey to 100 dream destinations." } =
   main {
     flex-grow: 1;
     overflow: auto;
+    scrollbar-color: black black;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
   }
   nav {
-    width: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .nav-button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.6rem;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+  .nav-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .social-links {
+    padding-left: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .social-links a {
+    display: flex;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    justify-content: center;
+    align-items: center;
+  }
+  .social-links a:hover {
+    border-color: #fff;
+  }
+  .social-links img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
   }
   .title--layer {
     width: 20%;
     display: flex;
     justify-content: center;
   }
-
   @media (max-width: 1000px) {
     header {
       flex-direction: column;

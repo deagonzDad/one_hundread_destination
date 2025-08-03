@@ -11,7 +11,7 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
   {
-    ignores: ["./node_modules", ".prettierrc.cjs"],
+    ignores: ["./node_modules", ".prettierrc.cjs", "dist", ".astro"],
   },
   js.configs.recommended,
   tseslint.configs.recommended,
