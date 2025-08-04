@@ -1,0 +1,73 @@
+---
+interface Props {
+  customId: string;
+}
+const { customId } = Astro.props;
+---
+
+<pointer-element class="pointer-ctn" id={customId}>
+  <img src="" class="pointer-img" id="pointerImg" />
+  <svg
+    width="100%"
+    height="100%"
+    class="pointer-svg"
+    id="pointerSvg"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+    <style>
+      :root {
+        --circle-center-x: -10;
+        --circle-center-y: -10;
+        --circle-radio: 40px;
+      }
+      #mainCircle {
+        cx: var(--circle-center-x);
+        cy: var(--circle-center-y);
+        r: calc(var(--circle-radio) * 2);
+        fill: red;
+        fill-opacity: 0.7;
+      }
+      #blurCircle {
+        cx: var(--circle-center-x);
+        cy: var(--circle-center-y);
+        r: var(--circle-radio);
+        fill: #ff0000;
+        fill-opacity: 0.7;
+        filter: url(#blur-effect);
+      }
+    </style>
+    <defs>
+      <filter id="blur-effect">
+        <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+      </filter>
+    </defs>
+
+    <circle id="mainCircle" filter="url(#blur-effect)"></circle>
+
+    <circle id="blurCircle"></circle>
+  </svg>
+</pointer-element>
+<style>
+  .pointer-ctn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .pointer-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    visibility: hidden;
+  }
+  .pointer-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+  }
+</style>
+<script>
+  import "@utils/PointerWComponent";
+</script>
