@@ -12,6 +12,12 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 export default defineConfig([
   {
     ignores: ["./node_modules", ".prettierrc.cjs", "dist", ".astro"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
   },
   js.configs.recommended,
   tseslint.configs.recommended,

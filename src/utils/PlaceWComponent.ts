@@ -13,6 +13,7 @@ import {
 import { SetDataAttributes } from "./DataParsers";
 import "@utils/SelectorCityWComponent";
 import type { Places } from "src/types/continents";
+import type { HTMLPointerElement } from "./PointerWComponent";
 
 const Selectors = {
   SCROLLER: "#placesScroll",
@@ -22,6 +23,10 @@ const Selectors = {
 } as const;
 
 class HTMLPlaceElement extends HTMLElement {
+  constructor() {
+    super();
+  }
+
   public country: string | null = null;
   public place: string | null = null;
   public continent: string | null = null;
@@ -33,10 +38,14 @@ class HTMLPlaceElement extends HTMLElement {
     this._scroller?.removeAttribute("data-paused");
 
   connectedCallback() {
+    const continentImgCtn = this.querySelector(
+      Selectors.CONTINENT_IMG,
+    ) as HTMLPointerElement;
     this._parseUrlParams();
-    this._setImageInPlace();
+    this._setTitle();
+    this._setImagePoint(continentImgCtn);
     this._setSelectorCity();
-    this._fillDataPlaces();
+    this._fillDataPlaces(continentImgCtn);
     this._injectStyles();
     this._injectAnimationStyles();
     this._setupPauseOnHover();
@@ -46,6 +55,11 @@ class HTMLPlaceElement extends HTMLElement {
     this._scroller?.removeEventListener("mouseenter", this._handleMouseEnter);
     this._scroller?.removeEventListener("mouseleave", this._handleMouseLeave);
   }
+
+  private _setTitle() {
+    document.title += ` - ${this.place}`;
+  }
+
   private _parseUrlParams() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -53,14 +67,24 @@ class HTMLPlaceElement extends HTMLElement {
     this.country = urlParams.get(QUERYSTRING_COUNTRY_NAME);
     this.continent = urlParams.get(QUERYSTRING_CONTINENT);
   }
-  private _setImageInPlace() {
-    const continentImg = this.querySelector(
-      Selectors.CONTINENT_IMG,
-    ) as HTMLImageElement;
-    const imgUrl = `images/continents/${this.continent}.webp`;
-    continentImg.src = generateUrl(imgUrl);
-    continentImg.alt = `A stylized image of the continent of ${this.continent}`;
+  private _setImageAttributes(
+    element: HTMLPointerElement,
+    attributes: Record<string, string>,
+  ) {
+    SetDataAttributes(element, attributes);
   }
+  private _setImagePoint(continentCtn: HTMLPointerElement) {
+    if (continentCtn) {
+      const imgUrl = `images/continents/${this.continent}.webp`;
+
+      const attributes = {
+        imgSrc: generateUrl(imgUrl),
+        altDesc: `A stylized image of the continent of ${this.continent}`,
+      };
+      this._setImageAttributes(continentCtn, attributes);
+    }
+  }
+
   private _setSelectorCity() {
     const selectorCtn = this.querySelector(Selectors.SELECTOR_CITY);
     if (selectorCtn) {
@@ -83,7 +107,7 @@ class HTMLPlaceElement extends HTMLElement {
     }
   }
 
-  private async _fillDataPlaces() {
+  private async _fillDataPlaces(element: HTMLPointerElement) {
     try {
       const file = (await GetJson(`json/${this.continent}.json`)) as Places;
       const scrollCtn = this.querySelector(
@@ -101,6 +125,14 @@ class HTMLPlaceElement extends HTMLElement {
         const baseCardWidth = 150;
         scrollCtn.innerHTML = `<div class="scroller__inner" style="--width-card:${baseCardWidth}px;--quantity:${totalItems};">${htmlData}</div>`;
         this._setupInfiniteScroll();
+
+        if (element && place?.coords) {
+          const attributesCoord = {
+            x: place.coords.x,
+            y: place.coords.y,
+          };
+          this._setImageAttributes(element, attributesCoord);
+        }
       }
     } catch (error) {
       console.error("Failed to fill data places:", error);

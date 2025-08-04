@@ -9,12 +9,16 @@ import linkedInIcon from "@assets/svg/linkedIn-icon.svg";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
-const { title, description = "A journey to 100 dream destinations." } =
-  Astro.props;
+const {
+  title,
+  image,
+  description = "A journey to 100 dream destinations.",
+} = Astro.props;
 ---
 
-<Layout {title} {description}>
+<Layout {title} {description} {image}>
   <Fragment slot={"head"}></Fragment>
   <header>
     <div class="title--layer">
