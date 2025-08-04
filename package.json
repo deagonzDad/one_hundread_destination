@@ -37,6 +37,7 @@
     "typescript-eslint": "^8.37.0"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.4.2",
     "@fontsource/bebas-neue": "^5.1.0",
     "@fontsource/roboto-mono": "^5.1.0",
     "astro": "5.12.0"
