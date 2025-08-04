@@ -1,0 +1,46 @@
+---
+import type { ImageMetadata } from "astro";
+interface Props {
+  title: string;
+  description: string;
+  url: URL | string;
+  image?: string | ImageMetadata | undefined;
+}
+
+const {
+  title,
+  description,
+  url,
+  image = "/images/places/image.webp",
+} = Astro.props;
+
+const canonicalUrl = new URL(url, Astro.site);
+
+let imagePath;
+if (image) {
+  imagePath = typeof image === "string" ? image : image.src;
+} else {
+  imagePath = "/images/places/image.webp";
+}
+
+const imageUrl = new URL(imagePath, Astro.site);
+---
+
+<!-- SEO Meta Tags -->
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:site_name" content="100 Destinations" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
