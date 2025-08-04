@@ -6,6 +6,7 @@
     "stayTime": 7,
     "weather": "temperate",
     "farForMe": "5",
+    "coords": { "x": "2450", "y": "1450" },
     "placesToVisit": [
       {
         "placeName": "Senso-ji Temple",
@@ -28,6 +29,7 @@
     "stayTime": 6,
     "weather": "tropical",
     "farForMe": "4",
+    "coords": { "x": "1500", "y": "1750" },
     "placesToVisit": [
       {
         "placeName": "Gateway of India",
@@ -50,6 +52,7 @@
     "stayTime": 5,
     "weather": "continental",
     "farForMe": "4",
+    "coords": { "x": "2100", "y": "1350" },
     "placesToVisit": [
       {
         "placeName": "Forbidden City",
@@ -72,6 +75,7 @@
     "stayTime": 4,
     "weather": "desert",
     "farForMe": "3",
+    "coords": { "x": "1200", "y": "1650" },
     "placesToVisit": [
       {
         "placeName": "Burj Khalifa",
@@ -94,6 +98,7 @@
     "stayTime": 5,
     "weather": "tropical",
     "farForMe": "4",
+    "coords": { "x": "1900", "y": "1800" },
     "placesToVisit": [
       {
         "placeName": "The Grand Palace",
