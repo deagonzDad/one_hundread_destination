@@ -13,12 +13,12 @@ const KeyFrameNames = {
 const IndexLayoutTransition: TransitionAnimationPair = {
   old: {
     name: KeyFrameNames.zoomOut,
-    duration: "2s",
+    duration: "300ms",
     easing: "ease-in",
   },
   new: {
     name: KeyFrameNames.zoomOut,
-    duration: "2s",
+    duration: "300ms",
     easing: "ease-in-out",
     direction: "reverse",
   },
@@ -42,7 +42,7 @@ const TextTransition: TransitionAnimationPair = {
   new: {
     //backward
     name: KeyFrameNames.textMoveUpper,
-    duration: "2s",
+    duration: "300ms",
     easing: "ease-in-out",
     direction: "reverse",
   },

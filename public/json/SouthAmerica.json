@@ -6,6 +6,7 @@
     "stayTime": 6,
     "weather": "tropical",
     "farForMe": "4",
+    "coords": { "x": "1800", "y": "1050" },
     "placesToVisit": [
       {
         "placeName": "Christ the Redeemer",
@@ -28,6 +29,7 @@
     "stayTime": 5,
     "weather": "temperate",
     "farForMe": "3",
+    "coords": { "x": "1800", "y": "1050" },
     "placesToVisit": [
       {
         "placeName": "La Boca",
@@ -50,6 +52,7 @@
     "stayTime": 3,
     "weather": "mountain",
     "farForMe": "4",
+    "coords": { "x": "1400", "y": "900" },
     "placesToVisit": [
       {
         "placeName": "Huayna Picchu",
@@ -72,6 +75,7 @@
     "stayTime": 4,
     "weather": "mediterranean",
     "farForMe": "3",
+    "coords": { "x": "1450", "y": "1300" },
     "placesToVisit": [
       {
         "placeName": "Cerro San Cristobal",
@@ -94,6 +98,7 @@
     "stayTime": 4,
     "weather": "tropical",
     "farForMe": "2",
+    "coords": { "x": "1400", "y": "600" },
     "placesToVisit": [
       {
         "placeName": "Walled City",

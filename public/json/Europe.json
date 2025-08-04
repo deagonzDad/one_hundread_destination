@@ -6,6 +6,7 @@
     "stayTime": 5,
     "weather": "temperate",
     "farForMe": "2",
+    "coords": { "x": "900", "y": "1000" },
     "placesToVisit": [
       {
         "placeName": "Eiffel Tower",
@@ -28,6 +29,7 @@
     "stayTime": 4,
     "weather": "mediterranean",
     "farForMe": "2",
+    "coords": { "x": "1100", "y": "1100" },
     "placesToVisit": [
       {
         "placeName": "Colosseum",
@@ -50,6 +52,7 @@
     "stayTime": 6,
     "weather": "temperate",
     "farForMe": "1",
+    "coords": { "x": "850", "y": "900" },
     "placesToVisit": [
       {
         "placeName": "Tower of London",
@@ -72,6 +75,7 @@
     "stayTime": 4,
     "weather": "temperate",
     "farForMe": "2",
+    "coords": { "x": "1050", "y": "850" },
     "placesToVisit": [
       {
         "placeName": "Brandenburg Gate",
@@ -94,6 +98,7 @@
     "stayTime": 3,
     "weather": "temperate",
     "farForMe": "1",
+    "coords": { "x": "950", "y": "900" },
     "placesToVisit": [
       {
         "placeName": "Anne Frank House",

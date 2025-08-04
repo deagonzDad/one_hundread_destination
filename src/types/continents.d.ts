@@ -15,6 +15,10 @@ interface PlaceToVisit {
   placeName: string;
   description: string;
 }
+export interface PlacePoint {
+  x: string;
+  y: string;
+}
 export interface PlaceInfo {
   country: string;
   interest: string[];
@@ -23,6 +27,7 @@ export interface PlaceInfo {
   weather: string;
   farForMe: number;
   placesToVisit: PlaceToVisit[];
+  coords: PlacePoint;
 }
 
 export interface Places {

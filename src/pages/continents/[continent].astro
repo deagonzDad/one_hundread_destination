@@ -18,9 +18,14 @@ export async function getStaticPaths() {
 }
 
 const { continentImg, continentName, lastCity, nextCity, name } = Astro.props;
+const image = `/images/continents/${continentImg}.webp`;
 ---
 
-<MainLayout title={continentName}>
+<MainLayout
+  title={`Explore ${name} - 100 Destinations`}
+  description={`Discover the best places to visit in ${name}. Plan your next adventure with our guide to ${name}'s top attractions.`}
+  image={image}
+>
   <article
     class="main-body"
     id="main-article"

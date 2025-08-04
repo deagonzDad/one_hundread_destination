@@ -4,13 +4,18 @@ import { ClientRouter } from "astro:transitions";
 import "@fontsource/bebas-neue";
 import "material-icons/iconfont/material-icons.css";
 import "@styles/transitions/mainIndex.css";
+import Seo from "src/components/Seo.astro";
 
 interface Props {
   title: string;
   description?: string;
+  image?: string | undefined;
 }
-const { title, description = "A journey to 100 dream destinations." } =
-  Astro.props;
+const {
+  title,
+  image = "/images/places/FullMap.webp",
+  description = "A journey to 100 dream destinations.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -18,10 +23,15 @@ const { title, description = "A journey to 100 dream destinations." } =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <Seo
+      title={title}
+      description={description}
+      url={Astro.url}
+      image={image}
+    />
     <slot name="head" />
     <ClientRouter />
   </head>

@@ -6,6 +6,7 @@
     "stayTime": 5,
     "weather": "temperate",
     "farForMe": "3",
+    "coords": { "x": "2200", "y": "1600" },
     "placesToVisit": [
       {
         "placeName": "Statue of Liberty",
@@ -28,6 +29,7 @@
     "stayTime": 4,
     "weather": "subtropical",
     "farForMe": "2",
+    "coords": { "x": "1800", "y": "1900" },
     "placesToVisit": [
       {
         "placeName": "Zocalo",
@@ -50,6 +52,7 @@
     "stayTime": 4,
     "weather": "continental",
     "farForMe": "2",
+    "coords": { "x": "2100", "y": "1600" },
     "placesToVisit": [
       {
         "placeName": "CN Tower",
@@ -72,6 +75,7 @@
     "stayTime": 5,
     "weather": "mediterranean",
     "farForMe": "4",
+    "coords": { "x": "1600", "y": "1700" },
     "placesToVisit": [
       {
         "placeName": "Hollywood Walk of Fame",
@@ -94,6 +98,7 @@
     "stayTime": 4,
     "weather": "oceanic",
     "farForMe": "4",
+    "coords": { "x": "1550", "y": "1450" },
     "placesToVisit": [
       {
         "placeName": "Stanley Park",

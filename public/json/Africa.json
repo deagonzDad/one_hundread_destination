@@ -6,6 +6,7 @@
     "stayTime": 5,
     "weather": "desert",
     "farForMe": "3",
+    "coords": { "x": "1550", "y": "550" },
     "placesToVisit": [
       {
         "placeName": "Pyramids of Giza",
@@ -28,6 +29,7 @@
     "stayTime": 7,
     "weather": "mediterranean",
     "farForMe": "4",
+    "coords": { "x": "1350", "y": "1500" },
     "placesToVisit": [
       {
         "placeName": "Table Mountain",
@@ -50,6 +52,7 @@
     "stayTime": 4,
     "weather": "arid",
     "farForMe": "2",
+    "coords": { "x": "950", "y": "550" },
     "placesToVisit": [
       {
         "placeName": "Jardin Majorelle",
@@ -72,6 +75,7 @@
     "stayTime": 6,
     "weather": "savanna",
     "farForMe": "4",
+    "coords": { "x": "1600", "y": "1000" },
     "placesToVisit": [
       {
         "placeName": "Nairobi National Park",
@@ -94,6 +98,7 @@
     "stayTime": 4,
     "weather": "tropical",
     "farForMe": "3",
+    "coords": { "x": "1150", "y": "850" },
     "placesToVisit": [
       {
         "placeName": "Lekki Conservation Centre",

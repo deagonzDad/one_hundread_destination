@@ -1,8 +1,12 @@
 ---
 import MainLayout from "src/layouts/MainLayout.astro";
 import FullMapComponent from "src/components/FullMapComponent.astro";
+
+const title = "Explore the World - 100 Destinations";
+const description =
+  "Choose a continent to begin your journey. Discover unique places and cultures from around the globe on our interactive world map.";
 ---
 
-<MainLayout title="World Map">
+<MainLayout {title} {description}>
   <FullMapComponent />
 </MainLayout>
