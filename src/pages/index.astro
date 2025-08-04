@@ -1,7 +1,7 @@
 ---
 import TitleComponent from "src/components/TitleComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import FullMapImg from "@assets/svg/FullMap.webp";
+import FullMapImg from "public/images/places/FullMap.webp";
 import indexStyles from "@styles/index.module.css";
 import {
   IndexLayoutAnimation,
@@ -11,7 +11,10 @@ import {
 import BtnContinent from "src/components/BtnContinent.astro";
 ---
 
-<Layout title="100 dream destinations by Anell">
+<Layout
+  title="100 Destinations - Discover Your Next Adventure"
+  description="Explore 100 of the world's most captivating destinations. Your ultimate travel guide to iconic landmarks, hidden gems, and unforgettable experiences."
+>
   <div class={indexStyles["img-container"]}>
     <img
       class={indexStyles["img-map"]}
